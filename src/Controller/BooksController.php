@@ -68,14 +68,13 @@ class BooksController extends AppController
     public function view($slug = null)
     {
         $book = $this->Books->find('all', [
-            'contain' => ['Categories', 'Writers', 'Comments'],
+            'contain' => ['Writers'],
             'conditions' => ['Books.slug'=>$slug]
         ])->first();
 
         if (empty($book)) {
             throw new NotFoundException(__('Không tìm thấy quyển sách này'));
-        }    
-
+        }
         $this->set('book', $book);
     }
 
