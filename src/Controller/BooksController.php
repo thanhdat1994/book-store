@@ -13,6 +13,7 @@ use App\Controller\AppController;
 class BooksController extends AppController
 {
 
+    var $uses = ["Comments","Categories"];
     /**
      * Index method
      *
@@ -71,11 +72,18 @@ class BooksController extends AppController
             'contain' => ['Writers'],
             'conditions' => ['Books.slug'=>$slug]
         ])->first();
-
         if (empty($book)) {
             throw new NotFoundException(__('Không tìm thấy quyển sách này'));
         }
         $this->set('book', $book);
+        //Hiển thị comment
+        $this->loadModel('Comments');
+        $comments = $this->Comments->find('all',[
+            'conditions' => ['book_id'=>$book['id']],
+            'order' => ['Comments.created ASC'],
+            'contain' => ['Users']
+            ]);
+        $this->set('comments',$comments);
     }
 
     /**

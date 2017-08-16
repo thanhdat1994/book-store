@@ -30,41 +30,21 @@
     </div>
     <!-- Hiển thị tác giả -->
     <div class="related">
-        <h4><?= __('Related Writers') ?></h4>
+        <h4><?= __('Tác giả') ?></h4>
         <?php if (!empty($book->writers)): ?>
             <?php foreach ($book['writers'] as $writer) {
-                        echo $this->Html->link($writer['name'],'/tac-gia/'.$writer['slug']);echo "<br>";
+                echo $this->Html->link($writer['name'],'/tac-gia/'.$writer['slug']);echo "<br>";
             }  ?>
         <?php endif; ?>
     </div>
     <!-- Hiển thị comments -->
     <div class="related">
-        <h4><?= __('Related Comments') ?></h4>
-        <?php if (!empty($book->comments)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('User Id') ?></th>
-                <th scope="col"><?= __('Book Id') ?></th>
-                <th scope="col"><?= __('Content') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($book->comments as $comments): ?>
-            <tr>
-                <td><?= h($comments->id) ?></td>
-                <td><?= h($comments->user_id) ?></td>
-                <td><?= h($comments->book_id) ?></td>
-                <td><?= h($comments->content) ?></td>
-                <td><?= h($comments->created) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Comments', 'action' => 'view', $comments->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Comments', 'action' => 'edit', $comments->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Comments', 'action' => 'delete', $comments->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comments->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
+        <h4><?= __('Bình luận') ?></h4>
+        <?php if (!empty($comments)): ?>
+            <?php foreach ($comments as $comment): ?>
+                <?php echo $comment['user']['username']; ?> đã gửi:
+                "<?php echo $comment['content']; ?>"<br>
+            <?php endforeach ?>
         <?php endif; ?>
     </div>    
 </div>
