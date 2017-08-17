@@ -65,7 +65,13 @@ class CommentsTable extends Table
 
         $validator
             ->requirePresence('content', 'create')
-            ->notEmpty('content');
+            ->notEmpty('content','Nội dung không được để trống')
+            ->add('content',[
+                'length' => [
+                    'rule' => ['minLength', 8],
+                    'message' => 'Nội dung nhận xét không được nhỏ hơn 8 kí tự'
+                    ]
+                ]);
 
         return $validator;
     }

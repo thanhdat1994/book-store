@@ -56,17 +56,25 @@ class CommentsController extends AppController
         $comment = $this->Comments->newEntity();
         if ($this->request->is('post')) {
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
-            if ($this->Comments->save($comment)) {
-                $this->Flash->success(__('The comment has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            if($this->Comments->validator()){
+                if ($this->Comments->save($comment)) {
+                    $this->Flash->success(__('Đã gởi nhận xét.'));               
+                }else{
+                    $this->Flash->error(__('Không gởi được nhận xét.'));
+                }            
+            }else{
+                $comment_errors = $this->Comments->errors;
+                debug($comment_errors);
+                $session = $this->request->session();
+                $session->write('comment_errors',$comment_errors);
             }
-            $this->Flash->error(__('The comment could not be saved. Please, try again.'));
+            $this->redirect($this->referer());
+            
         }
-        $users = $this->Comments->Users->find('list', ['limit' => 200]);
+        /*$users = $this->Comments->Users->find('list', ['limit' => 200]);
         $books = $this->Comments->Books->find('list', ['limit' => 200]);
         $this->set(compact('comment', 'users', 'books'));
-        $this->set('_serialize', ['comment']);
+        $this->set('_serialize', ['comment']);*/
     }
 
     /**

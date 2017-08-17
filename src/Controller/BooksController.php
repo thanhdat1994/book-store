@@ -84,6 +84,25 @@ class BooksController extends AppController
             'contain' => ['Users']
             ]);
         $this->set('comments',$comments);
+        //Hiển thị sách liên quan
+        $related_books = $this->Books->find('all',[
+            'fields' => ['title','image','sale_price','slug'],
+            'conditions' => [
+                'category_id' => $book['category_id'],
+                'Books.id <>' => $book['id'] 
+                ],
+            'contain' => ['Writers'],
+            'limit' => 5,
+            'order' => 'rand()'
+            ]);
+        $this->set('related_books', $related_books);
+        //Báo lỗi xác thực dữ liệu khi gởi comment
+        /*$session = $this->request->session();
+        if($session->check('comment_errors')){
+            $errors = $session->read('comment_errors');
+            $this->set(compact('errors',$errors));
+            $session->delete('comment_errors');
+        }*/
     }
 
     /**

@@ -40,11 +40,35 @@
     <!-- Hiển thị comments -->
     <div class="related">
         <h4><?= __('Bình luận') ?></h4>
-        <?php if (!empty($comments)): ?>
-            <?php foreach ($comments as $comment): ?>
-                <?php echo $comment['user']['username']; ?> đã gửi:
-                "<?php echo $comment['content']; ?>"<br>
-            <?php endforeach ?>
+        <?php if (!empty($comments)){
+                foreach ($comments as $comment) {
+                    echo $comment['user']['username']."  đã gửi:";
+                    echo $comment['content']."<br>";
+                }
+             } else{
+                    echo "Chưa có nhận xét cho quyển sách này.";
+             }
+        ?>        
+    </div><br>
+    <!-- Gởi comments -->
+    <div class="comments form">
+        <?php echo $this->Form->create('Comment',['url'=>['controller'=>'Comments','action'=>'add'],'novalidator'=>true]); ?>
+        <fieldset>
+            <legend><?php echo __('Thêm bình luận'); ?></legend>
+            <?php
+            echo $this->Form->input('user_id',['type'=>'hidden','value'=>1]);
+            echo $this->Form->input('book_id',['type'=>'hidden','value'=>$book['id']]);
+            echo $this->Form->input('content',['type'=>'textarea','label'=>'']);
+            ?>
+            <?php echo $this->Form->input('Chấp nhận',['type'=>'submit']); ?>
+        </fieldset>
+        <?php echo $this->Form->end(); ?>
+    </div>
+    <!-- Hiển thị sách liên quan -->
+    <div class="related">
+        <h4><?= __('Sách cùng chuyên mục') ?></h4>
+        <?php if (!empty($related_books)): ?>
+            <?php echo $this->element('books',['books'=>$related_books]); ?>
         <?php endif; ?>
     </div>    
 </div>
