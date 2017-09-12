@@ -41,13 +41,18 @@ class CommentsTable extends Table
 
         $this->addBehavior('Timestamp');
 
+        $this->addBehavior('CounterCache', [
+            'Books' => ['comment_count']
+        ]);
+
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
         $this->belongsTo('Books', [
             'foreignKey' => 'book_id',
-            'joinType' => 'INNER'
+            'joinType' => 'INNER',
+            'comment_count' => ['counterCache' => true]
         ]);
     }
 

@@ -38,6 +38,7 @@ class BooksController extends AppController
             'paramType' =>'querystring',
             'contain' => ['Writers']
             ]);
+        pr($books);
         $this->set('books',$books);
         
     }
@@ -173,5 +174,24 @@ class BooksController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Update comment_count trong books
+     */
+    public function updateComment(){
+        $books = $this->Books->find('all',[
+            'fields' => ['id'],
+            'contain' => ['Comments']
+            ]);
+        pr($books);
+        foreach ($books as $book) {
+            if(count($book['Comments']) > 0){
+                $this->Books->updateAll(
+                    ['comment_count' => count($book['Comments'])],
+                    ['Books.id' => $book['Books']['id']]
+                    );
+            }
+        }
     }
 }

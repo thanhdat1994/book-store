@@ -39,7 +39,7 @@
     </div>
     <!-- Hiển thị comments -->
     <div class="related">
-        <h4><?= __('Bình luận') ?></h4>
+        <p><h4><?= __('Bình luận: ') ?></h4> Có tất cả <?php echo $book['comment_count'] ?> bình luận</p>
         <?php if (!empty($comments)){
                 foreach ($comments as $comment) {
                     echo $comment['user']['username']."  đã gửi:";
