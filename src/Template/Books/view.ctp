@@ -23,6 +23,14 @@
             <th scope="row"><?= __('Sale Price') ?></th>
             <td><?= $this->Number->format($book->sale_price,['places'=> 0,'after'=>' VNĐ']) ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?=__('Comments') ?></th>
+            <td>
+                
+                <?= $this->Number->format($book->comment_count,['places'=>0,'before'=>'(','after'=>') Comments'])?> 
+                <!--<?php echo $book['Books']['comment_count']; ?>-->
+            </td>
+        </tr>
     </table>
     <div class="row">
         <h4><?= __('Info') ?></h4>
@@ -52,6 +60,12 @@
     </div><br>
     <!-- Gởi comments -->
     <div class="comments form">
+        <?php if (isset($error)): ?>
+            <?php foreach ($errors as $error ): ?>
+                <?php echo $error[0]; ?>
+            <?php endforeach ?>
+        <?php endif ?>
+        
         <?php echo $this->Form->create('Comment',['url'=>['controller'=>'Comments','action'=>'add'],'novalidator'=>true]); ?>
         <fieldset>
             <legend><?php echo __('Thêm bình luận'); ?></legend>

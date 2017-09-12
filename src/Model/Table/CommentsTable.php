@@ -47,7 +47,8 @@ class CommentsTable extends Table
         ]);
         $this->belongsTo('Books', [
             'foreignKey' => 'book_id',
-            'joinType' => 'INNER'
+            'joinType' => 'INNER',
+            'counterCache',['Articles'=>['comment_count']]
         ]);
     }
 
