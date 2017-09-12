@@ -97,13 +97,15 @@ class BooksController extends AppController
             'order' => 'rand()'
             ]);
         $this->set('related_books', $related_books);
+        
         //Báo lỗi xác thực dữ liệu khi gởi comment
-        /*$session = $this->request->session();
-        if($session->check('comment_errors')){
-            $errors = $session->read('comment_errors');
-            $this->set(compact('errors',$errors));
-            $session->delete('comment_errors');
-        }*/
+        // $SSession = $this->request->session();
+        // if($Session->check('comment_errors')){
+        //     $errors = $Session->read('comment_errors');
+        //     $this->set(compact('errors',$errors));
+        //     $Session->delete('comment_errors');
+        // }
+
     }
 
     /**
@@ -193,5 +195,32 @@ class BooksController extends AppController
                     );
             }
         }
+
+    /**
+     * search
+     */
+    public function search(){
+        $notfound = false;
+        $isPost = $this->request->is('post');
+        if ($isPost != null) {
+            # code..
+            // pr($this->request->data);
+            $keyword = $this->request->getData['Books']['keyword'];
+            $books = $this->Books->find('all',[
+                'fields'=>['title','image','sale_price','slug'],
+                'contain'=>['Writers'],
+                'order'=>['Books.created'=>'desc'],
+                'conditions'=>['Books.published'=>1,'title like'=>'%'.$keyword.'%']
+                ]);
+            // pr($books);
+            if (!empty($books)) {
+                # code...
+                $this->set('results',$books);
+            }else
+            {
+                $notfound = true;
+            }
+        }
+        $this->set('notfound',$notfound);
     }
 }
