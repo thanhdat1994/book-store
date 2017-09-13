@@ -1,9 +1,23 @@
-<?php echo $this->Form->create('Books'); ?>
-<?php echo $this->Form->input('keyword',['label'=>'','placeholder'=>'Gõ vào từ khóa để tìm kiếm...']); ?>
-<?php echo $this->Form->unlockField('Search'); ?>
-<!-- Hiền thị kết quả -->
-<?php if ($notfound == false && isset($result)): ?>
-	<?php echo $this->element('books',['books'=>$result]); ?>
+<?php echo $this->Form->create('Books',['url'=>['action'=>'get_keyword'],'novalidator'=>true]); ?>
+<fieldset>
+	<?php echo $this->Form->input('keyword',['label'=>'','placeholder'=>'Gõ vào từ khóa để tìm kiếm...','error'=>false]); ?>
+	<button type="submit" class="btn btn-danger">Tìm kiếm</button>
+</fieldset>
+<?php echo $this->Form->end(); ?>
+
+<!-- Hiển thị thông báo lỗi -->
+<?php if (isset($errors)) {
+	foreach ($errors as $error) {
+		echo $error[0];
+	}
+} ?>
+
+
+<!-- Hiển thị kết quả tìm kiếm -->
+<?php if($notfound == false && isset($results)): ?>
+	Kết quả tìm kiếm của từ khóa <strong><?php echo $keyword ?></strong><br>
+	<?php echo $this->element('books',['books'=>$results]); ?>
+	<?php echo $this->element('pagination',['object'=>'quyển sách']); ?>
 <?php elseif($notfound): ?>
 	Không tìm thấy quyển sách này!
 <?php endif ?>

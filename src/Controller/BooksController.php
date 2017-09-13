@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Validation\Validator;
 
 /**
  * Books Controller
@@ -14,6 +15,9 @@ class BooksController extends AppController
 {
 
     var $uses = ["Comments","Categories"];
+
+    var $components = ["Paginator"];
+
     /**
      * Index method
      *
@@ -38,7 +42,6 @@ class BooksController extends AppController
             'paramType' =>'querystring',
             'contain' => ['Writers']
             ]);
-        pr($books);
         $this->set('books',$books);
         
     }
@@ -98,14 +101,13 @@ class BooksController extends AppController
             ]);
         $this->set('related_books', $related_books);
         
-        //Báo lỗi xác thực dữ liệu khi gởi comment
-        // $SSession = $this->request->session();
-        // if($Session->check('comment_errors')){
-        //     $errors = $Session->read('comment_errors');
-        //     $this->set(compact('errors',$errors));
-        //     $Session->delete('comment_errors');
-        // }
-
+        /*Báo lỗi xác thực dữ liệu khi gởi comment*/
+        $session = $this->request->session();
+        if($session->check('comment_errors')){
+            $errors = $session->read('comment_errors');
+            $this->set(compact('errors',$errors));
+            $session->delete('comment_errors');
+        }
     }
 
     /**
@@ -181,46 +183,91 @@ class BooksController extends AppController
     /**
      * Update comment_count trong books
      */
-    public function updateComment(){
+    /*public function updateComment(){
         $books = $this->Books->find('all',[
             'fields' => ['id'],
             'contain' => ['Comments']
             ]);
-        pr($books);
+        $this->set('books',$books);
         foreach ($books as $book) {
             if(count($book['Comments']) > 0){
                 $this->Books->updateAll(
-                    ['comment_count' => count($book['Comments'])],
+                    ['Books.comment_count' => count($book['Comments'])],
                     ['Books.id' => $book['Books']['id']]
-                    );
+                );
             }
         }
+    }*/
+
+    /*Hàm xử lí get_keyword*/
+
+    public function getKeyword(){
+        $book = $this->Books->newEntity();
+        if ($this->request->is('post')) {
+            $book = $this->Books->patchEntity($book, $this->request->data());
+            if ($this->Books->validator()) {
+                $keyword = $this->request->data['keyword'];
+            }else{
+                $errors = $this->Books->errors($this->request->data);
+                $session = $this->request->session();
+                $session->write('search_validation',$errors);
+            }
+            $this->redirect(['action'=>'search','keyword'=>$keyword]);
+        }
+    }    
+
 
     /**
      * search
      */
     public function search(){
         $notfound = false;
-        $isPost = $this->request->is('post');
-        if ($isPost != null) {
-            # code..
-            // pr($this->request->data);
-            $keyword = $this->request->getData['Books']['keyword'];
-            $books = $this->Books->find('all',[
-                'fields'=>['title','image','sale_price','slug'],
-                'contain'=>['Writers'],
-                'order'=>['Books.created'=>'desc'],
-                'conditions'=>['Books.published'=>1,'title like'=>'%'.$keyword.'%']
-                ]);
-            // pr($books);
-            if (!empty($books)) {
-                # code...
-                $this->set('results',$books);
-            }else
-            {
+        if(!empty($this->request->query['keyword'])){
+            $keyword = $this->request->query['keyword'];
+            $this->paginate = [
+                'fields'=>['id','title','image','sale_price','slug'],
+                'contain' => ['Writers'],
+                'limit' => 5,
+                'group' => 'Books.id',
+                'order' => ['Books.created' => 'desc'],                    
+                'conditions' => [
+                'Books.published' => 1,
+                'or'=>[
+                    'Books.title like' => '%'.$keyword.'%',
+                    'name like' => '%'.$keyword.'%']
+                ],
+                'join' => [
+                    [
+                    'table' => 'Books_Writers',
+                    'type' => 'INNER',
+                    'alias' => 'BookWriter',
+                    'conditions' => 'BookWriter.book_id = Books.id'
+                    ],
+                    [
+                    'table' => 'Writers',
+                    'type' => 'INNER',
+                    'alias' => 'Writer',
+                    'conditions' => 'BookWriter.writer_id = Writer.id'
+                    ]
+                ]                    
+            ];
+            $books = $this->paginate('Books');
+
+            if (empty($books)) {
                 $notfound = true;
+            }else {
+                $this->set('results',$books);
             }
-        }
+            $this->set('keyword',$keyword);
+        }       
+
+        $session = $this->request->session();
+        if($session->check('search_validation')){
+            $errors = $session->read('search_validation');
+            $this->set('errors',$errors);
+            $session->delete('search_validation');
+        }      
+
         $this->set('notfound',$notfound);
-    }
+    }    
 }

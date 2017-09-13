@@ -64,7 +64,6 @@ class CommentsController extends AppController
                 }            
             }else{
                 $comment_errors = $this->Comments->errors;
-                debug($comment_errors);
                 $session = $this->request->session();
                 $session->write('comment_errors',$comment_errors);
             }
