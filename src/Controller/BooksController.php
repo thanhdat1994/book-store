@@ -25,6 +25,7 @@ class BooksController extends AppController
      */
     public function index()
     {
+        $this->loadModel('Categories');
         // $this->paginate = [
         //     'contain' => ['Categories']
         // ];
@@ -43,6 +44,12 @@ class BooksController extends AppController
             'contain' => ['Writers']
             ]);
         $this->set('books',$books);
+
+        //Hiển thị menu categories lên trang chủ
+        $categories = $this->Categories->find('all',[
+            'order' => ['name'=>'asc']
+            ]);
+        $this->set('categories',$categories);
         
     }
 
@@ -269,5 +276,5 @@ class BooksController extends AppController
         }      
 
         $this->set('notfound',$notfound);
-    }    
+    }
 }

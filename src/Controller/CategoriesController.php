@@ -27,6 +27,20 @@ class CategoriesController extends AppController
     }
 
     /**
+     * menu method
+     *
+     * @return void
+     */
+    public function menu() {
+        if($this->request->is('requested')){
+            $categories = $this->Categories->find('all',[
+            'order' => ['name'=>'asc']
+            ]);
+            return $categories;
+        }       
+    }
+
+    /**
      * View method
      *
      * @param string|null $id Category id.

@@ -6,5 +6,7 @@
 ?>
 <h3><?php echo $this->Html->link('Sách mới','/sach-moi'); ?></h3>
 
+<?php echo $this->element('menu_categories') ?>
+
 <?php echo $this->element('books',['books'=>$books]) ?>
 
