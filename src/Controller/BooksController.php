@@ -62,7 +62,7 @@ class BooksController extends AppController
         $this->paginate = [
             'fields' => ['id','title','image','sale_price','slug'],
             'order' => ['created' =>'desc'],
-            'limit' => 3,
+            'limit' => 6,
             'conditions' => ['published'=>1],
             'contain' => ['Writers']
             ];
