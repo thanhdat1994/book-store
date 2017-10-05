@@ -1,10 +1,12 @@
+<!-- update 05/10 không cần thiết khi default.ctp có form tìm kiếm rồi -->
+<!--
 <?php echo $this->Form->create('Books',['url'=>['action'=>'get_keyword'],'novalidator'=>true]); ?>
 <fieldset>
 	<?php echo $this->Form->input('keyword',['label'=>'','placeholder'=>'Gõ vào từ khóa để tìm kiếm...','error'=>false]); ?>
 	<button type="submit" class="btn btn-danger">Tìm kiếm</button>
 </fieldset>
 <?php echo $this->Form->end(); ?>
-
+-->
 <!-- Hiển thị thông báo lỗi -->
 <?php if (isset($errors)) {
 	foreach ($errors as $error) {

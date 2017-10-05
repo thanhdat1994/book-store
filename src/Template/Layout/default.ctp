@@ -1,6 +1,6 @@
 <?php
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'BookStore';
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,11 +23,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 
-    <link rel="shortcut icon" href="themes/images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="themes/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="themes/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="themes/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="themes/images/ico/apple-touch-icon-57-precomposed.png">
+
+    <link rel="shortcut icon" href="/themes/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/themes/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/themes/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/themes/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/themes/images/ico/apple-touch-icon-57-precomposed.png">
     <style type="text/css" id="enject"></style>
 
 </head>
@@ -35,7 +36,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div id="header">
         <div class="container-header">
             <div class="container">
-                <a class="brand" href="index.html"><img src="themes/images/logo.png" alt="Bootsshop"/></a>
+                <!-- thử thay dổi logo, thiết lập link của logo là index-->
+                <a class="brand" href="index.php"><img src="themes/images/newlogo2.png" alt="Bootsshop"/></a>
+                <!--end-->
                 <div class="account_desc">
                     <ul>
                         <li><a href="contact.html">Register</a></li>
@@ -50,12 +53,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="row-header">
             <div class="col-sm-9">
                 <div>
-                    aaaaaaaaaaaaaaaa
+                    <!-- aaaaaaaaaaaaaaaa*@ -->
                 </div>    
             </div>
             <div class="col-sm-3">
                 <div class="search_box pull-right">
-                    <input type="text" placeholder="Search"/>
+                    <!-- <input type="text" placeholder="Nhập tên sách cần tìm..."/> -->
+                  <!-- form tìm kiếm  update 05/10 24a-->
+                  <?php echo $this->Form->create('Books',['url'=>['controller'=>'Books','action'=>'getKeyword']]); ?>
+                  <?php echo $this->Form->input('keyword',['label'=>' ', 'placeholder'=>'Nhập tên sách cần tìm ...']); ?>
+                  <?php echo $this->Form->end(); ?>
+                  <!-- end-->
                 </div>
             </div>
         </div>
@@ -66,7 +74,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="row">
             <!-- Sidebar ================================================== -->
             <div id="sidebar" class="span3">
-                <ul id="sideManu" class="nav nav-tabs nav-stacked">
+                <!-- Long thay đổi sang menu-category 05/10 24a-->
+                <div class="well well-small">
+                <h4>Danh mục sách</h4>
+                <?php echo $this->element('menu_categories'); ?>
+                </div>
+                <!-- <ul id="sideManu" class="nav nav-tabs nav-stacked">
                     <li class="subMenu open"><a> ELECTRONICS [230]</a>
                         <ul>
                             <li><a class="active" href="products.html"><i class="icon-chevron-right"></i>Cameras (100) </a></li>
@@ -101,8 +114,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                     <li><a href="products.html">HEALTH & BEAUTY [18]</a></li>
                     <li><a href="products.html">SPORTS & LEISURE [58]</a></li>
                     <li><a href="products.html">BOOKS & ENTERTAINMENTS [14]</a></li>
-                </ul>
-                <br/>
+                </ul> -->
+                <!-- end-->
             </div>
             <!-- Sidebar end=============================================== -->
             <div class="span9">
@@ -113,7 +126,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                             <div class="carousel-inner">
                                 <div class="item active">
                                     <ul class="thumbnails">
-                                        <li class="span3">
+                                        
+                                         <li class="span3">
                                             <div class="thumbnail">
                                                 <i class="tag"></i>
                                                 <a href="anh-sang-vo-hinh"><img src="webroot/img/home/anh-sang-vo-hinh.jpg" alt=""></a>
@@ -156,7 +170,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                                     <h4><span>20,000Đ</span></h4>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </li> 
                                     </ul>
                                 </div>
                                 <div class="item">
@@ -205,6 +219,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                                 </div>
                                             </div>
                                         </li>
+                                        
                                     </ul>
                                 </div>
                             </div>
