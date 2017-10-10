@@ -1,6 +1,6 @@
 <?php
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+//$cakeDescription = 'Home: Books Store';
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('bootstrap-responsive.min.css') ?>
-    <?= $this->Html->css('font-awesome.css') ?>
+    <?= $this->Html->css('font-awesome/css/font-awesome.css') ?>
     <?= $this->Html->css('prettify.css') ?>
     <?= $this->Html->css('home.css') ?>
 
@@ -35,30 +35,20 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div id="header">
         <div class="container-header">
             <div class="container">
-                <a class="brand" href="index.html"><img src="themes/images/logo.png" alt="Bootsshop"/></a>
+                <a class="brand" href="<?php $this->Html->link(['controller'=>'books','action' => 'index']); ?>"><img src="themes/images/logo.png" alt="Bootsshop"/></a>                
                 <div class="account_desc">
-                    <ul>
-                        <li><a href="contact.html">Register</a></li>
-                        <li><a href="contact.html">Login</a></li>
-                        <li><a href="preview.html">Delivery</a></li>
-                        <li><a href="#">Checkout</a></li>
-                        <li><a href="#">My Account</a></li>
+                    <ul class="navbar-header">
+                        <li><a href="#">Giới Thiệu</a></li>
+                        <li><a href="#">Liên Hệ</a></li>
+                        <li><a href="#">Đăng Kí</a></li>
+                        <li><a href="#">Đăng Nhập</a></li>
+                        <li><a href="#">Giỏ Hàng</a></li>
+                        <li><a href="#">Tài Khoản</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="row-header">
-            <div class="col-sm-9">
-                <div>
-                    aaaaaaaaaaaaaaaa
-                </div>    
-            </div>
-            <div class="col-sm-3">
-                <div class="search_box pull-right">
-                    <input type="text" placeholder="Search"/>
-                </div>
-            </div>
-        </div>
+        <div class="wrap-box"></div>
     </div>
 <!-- Header End====================================================================== -->
 <div id="mainBody">
@@ -66,44 +56,54 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="row">
             <!-- Sidebar ================================================== -->
             <div id="sidebar" class="span3">
+                <div class="form-inline">
+                    <div class="input-search">
+                        <?php echo $this->Form->create('Books',['url'=>['action'=>'get_keyword'],'novalidator'=>true,'class'=>'form-control pull-right']); ?>
+                        <?php echo $this->Form->input('keyword',['label'=>'','placeholder'=>'Tìm kiếm sách...','error'=>false]); ?>
+                    </div>
+                    <div class="input-btn">
+                        <button type="submit" id="submitButton" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        <?php echo $this->Form->end(); ?>
+                    </div>
+                </div>
+                <h4>Danh mục sách </h4>
                 <ul id="sideManu" class="nav nav-tabs nav-stacked">
-                    <li class="subMenu open"><a> ELECTRONICS [230]</a>
+                    <!-- <li class="subMenu open"><a> Kỹ Năng Sống</a>
                         <ul>
                             <li><a class="active" href="products.html"><i class="icon-chevron-right"></i>Cameras (100) </a></li>
                             <li><a href="products.html"><i class="icon-chevron-right"></i>Computers, Tablets & laptop (30)</a></li>
                             <li><a href="products.html"><i class="icon-chevron-right"></i>Mobile Phone (80)</a></li>
                             <li><a href="products.html"><i class="icon-chevron-right"></i>Sound & Vision (15)</a></li>
                         </ul>
-                    </li>
-                    <li class="subMenu"><a> CLOTHES [840] </a>
-                        <ul style="display:none">
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Women's Clothing (45)</a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Women's Shoes (8)</a></li>                                                
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Women's Hand Bags (5)</a></li>    
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Men's Clothings  (45)</a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Men's Shoes (6)</a></li>                                              
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Kids Clothing (5)</a></li>                                                
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Kids Shoes (3)</a></li>                                               
-                        </ul>
-                    </li>
-                    <li class="subMenu"><a>FOOD AND BEVERAGES [1000]</a>
-                        <ul style="display:none">
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Angoves  (35)</a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Bouchard Aine & Fils (8)</a></li>                                             
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>French Rabbit (5)</a></li>    
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Louis Bernard  (45)</a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>BIB Wine (Bag in Box) (8)</a></li>                                                
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Other Liquors & Wine (5)</a></li>                                             
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Garden (3)</a></li>                                               
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Khao Shong (11)</a></li>                                              
-                        </ul>
-                    </li>
-                    <li><a href="products.html">HEALTH & BEAUTY [18]</a></li>
-                    <li><a href="products.html">SPORTS & LEISURE [58]</a></li>
-                    <li><a href="products.html">BOOKS & ENTERTAINMENTS [14]</a></li>
+                    </li> -->
+                    <li><a href="danh-muc/van-hoc"> Kĩ Năng Sống</a></li>
+                    <li><a href="danh-muc/van-hoc"> Kinh tế</a></li>
+                    <li><a href="danh-muc/van-hoc"> Lịch sử</a></li>
+                    <li><a href="danh-muc/van-hoc"> Văn Học</a></li>
+                    <li><a href="danh-muc/giao-khoa"> Giáo Khoa</a></li>
                 </ul>
                 <br/>
-            </div>
+                <h4>Danh mục tác giả </h4>
+                <ul id="sideManu" class="nav nav-tabs nav-stacked">
+                    <!-- <li class="subMenu open"><a> Kỹ Năng Sống</a>
+                        <ul>
+                            <li><a class="active" href="products.html"><i class="icon-chevron-right"></i>Cameras (100) </a></li>
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Computers, Tablets & laptop (30)</a></li>
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Mobile Phone (80)</a></li>
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Sound & Vision (15)</a></li>
+                        </ul>
+                    </li> -->
+                    <li><a href="tac-gia/philip-miller"> Philip Miller</a></li>
+                    <li><a href="tac-gia/anđy-andrews"> Andy Andrews</a></li>
+                    <li><a href="tac-gia/dat-lai-lat-ma"> Đạt Lai Lạt Ma</a></li>
+                    <li><a href="tac-gia/anthony-doerr"> Anthony Doerr</a></li>
+                    <li><a href="tac-gia/ernest-hemingway"> Ernest Hemingway</a></li>
+                    <li><a href="tac-gia/do-huan"> Đỗ Huân</a></li>
+                    <li><a href="tac-gia/hidehiko"> Hidehiko</a></li>
+                    <li><a href="tac-gia/dave-trott"> Dave Trott</a></li>
+                </ul>
+                <br/>
+            </div>                
             <!-- Sidebar end=============================================== -->
             <div class="span9">
                 <div class="well well-small">
@@ -118,9 +118,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                                 <i class="tag"></i>
                                                 <a href="anh-sang-vo-hinh"><img src="webroot/img/home/anh-sang-vo-hinh.jpg" alt=""></a>
                                                 <div class="caption">
-                                                    <div class="product-name"><p><h5>Ánh sáng vô hình</h5></p>
+                                                    <div class="product-name"><p><h4>Ánh sáng vô hình</h4></p>
                                                     </div>
-                                                    <h4><span>90,000Đ</span></h4>
+                                                    <h5><span>Anthony Doerr</span></h5>
                                                 </div>
                                             </div>
                                         </li>
@@ -129,9 +129,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                                 <i class="tag"></i>
                                                 <a href="bien-doi-thay"><img src="webroot/img/home/bien-doi-thay.jpg" alt=""></a>
                                                 <div class="caption">
-                                                    <div class="product-name"><p><h5>Biển đổi thay</h5></p>
+                                                    <div class="product-name"><p><h4>Biển đổi thay</h4></p>
                                                     </div>
-                                                    <h4><span>40,000Đ</span></h4>
+                                                    <h5><span>Ernest Hemingway</span></h5>
                                                 </div>
                                             </div>
                                         </li>
@@ -140,9 +140,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                                 <i class="tag"></i>
                                                 <a href="chuong-nguyen-hon-ai"><img src="webroot/img/home/chuong-nguyen-hon-ai.jpg" alt=""></a>
                                                 <div class="caption">
-                                                    <div class="product-name"><p><h5>Chuông nguyện hồn ai</h5></p>
+                                                    <div class="product-name"><p><h4>Chuông nguyện hồn ai</h4></p>
                                                     </div>          
-                                                    <h4><span>80,000Đ</span></h4>
+                                                    <h5><span>Ernest Hemingway</span></h5>
                                                 </div>
                                             </div>
                                         </li>
@@ -151,9 +151,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                                 <i class="tag"></i>
                                                 <a href="ong-gia-va-bien-ca"><img src="webroot/img/home/ong-gia-va-bien-ca.jpg" alt=""></a>
                                                 <div class="caption">
-                                                    <div class="product-name"><p><h5>Ông già và biển cả</h5></p>
+                                                    <div class="product-name"><p><h4>Ông già và biển cả</h4></p>
                                                     </div>
-                                                    <h4><span>20,000Đ</span></h4>
+                                                    <h5><span>Ernest Hemingway</span></h5>
                                                 </div>
                                             </div>
                                         </li>
@@ -166,9 +166,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                                 <i class="tag"></i>
                                                 <a href="mot-voi-mot-la-ba"><img src="webroot/img/home/mot-voi-mot-la-ba.jpg" alt=""></a>
                                                 <div class="caption">
-                                                    <div class="product-name"><p><h5>Một với một là ba</h5></p>
+                                                    <div class="product-name"><p><h4>Một với một là ba</h4></p>
                                                     </div>
-                                                    <h4><span>40,000Đ</span></h4>
+                                                    <h5><span>Hidehiko - Dave Trott</span></h5>
                                                 </div>
                                             </div>
                                         </li>
@@ -177,9 +177,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                                 <i class="tag"></i>
                                                 <a href="nguoi-thap-sang-tam-hon"><img src="webroot/img/home/nguoi-thap-sang-tam-hon.jpg" alt=""></a>
                                                 <div class="caption">
-                                                    <div class="product-name"><p><h5>Người thắp sáng tâm hồn</h5></p>
+                                                    <div class="product-name"><p><h4>Người thắp sáng tâm hồn</h4></p>
                                                     </div>
-                                                    <h4><span>35,000Đ</span></h4>
+                                                    <h5><span>Andy Andrews</span></h5>
                                                 </div>
                                             </div>
                                         </li>
@@ -188,9 +188,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                                 <i class="tag"></i>
                                                 <a href="nha-dao-tao-sanh-soi"><img src="webroot/img/home/nha-dao-tao-sanh-soi.jpg" alt=""></a>
                                                 <div class="caption">
-                                                    <div class="product-name"><p><h5>Nhà đào tạo sành sỏi</h5></p>
+                                                    <div class="product-name"><p><h4>Nhà đào tạo sành sỏi</h4></p>
                                                     </div>
-                                                    <h4><span>65,000Đ</span></h4>
+                                                    <h5><span>Đỗ Huân</span></h5>
                                                 </div>
                                             </div>
                                         </li>
@@ -199,9 +199,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                                                 <i class="tag"></i>
                                                 <a href="troi-xanh-cua-tao"><img src="webroot/img/home/troi-xanh-cua-tao.jpg" alt=""></a>
                                                 <div class="caption">
-                                                    <div class="product-name"><p><h5>Trời xanh của táo</h5></p>
+                                                    <div class="product-name"><p><h4>Trời xanh của táo</h4></p>
                                                     </div>
-                                                    <h4><span>50,000Đ</span></h4>
+                                                    <h5><span>Anthony Doerr</span></h5>
                                                 </div>
                                             </div>
                                         </li>

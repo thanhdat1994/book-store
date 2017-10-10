@@ -38,7 +38,7 @@ class BooksController extends AppController
         $books = $this->Books->find('all',[
             'fields' => ['id','title','image','sale_price','slug'],
             'order' => ['created' =>'desc'],
-            'limit' => 9,
+            'limit' => 6,
             'conditions' => ['published'=>1],
             'paramType' =>'querystring',
             'contain' => ['Writers']
@@ -50,6 +50,7 @@ class BooksController extends AppController
             'order' => ['name'=>'asc']
             ]);
         $this->set('categories',$categories);
+        $this->set('cakeDescription','Trang chủ: Books Store');
         
     }
 
@@ -68,6 +69,7 @@ class BooksController extends AppController
             ];
         $books = $this->paginate();
         $this->set('books',$books);
+        $this->set('cakeDescription','Sách mới: Books Store');
     }
 
     /**

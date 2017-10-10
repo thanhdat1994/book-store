@@ -7,15 +7,13 @@
 				<h4><span><?php echo $this->Html->link($book['title'],'/'.$book['slug']); ?></span></h4>
 			</div>
 			<div class="writer">
-				<h5><?php echo "Tác giả: ";
+				<h5><?php
 				foreach ($book['writers'] as $writer) {
 					echo $this->Html->link($writer['name'],'/tac-gia/'.$writer['slug'])."&nbsp;&nbsp;";
-				}  ?></h5>
+				}  ?></h5>				
 			</div>
-			<h5><span>
-				<?php echo $this->Number->format($book['sale_price'],['places'=> 0,'after'=>'VNĐ']); ?></span>
-			<a class="btn btn-primary" href="#">Thêm vào <i class="icon-shopping-cart"></i></a></h5>
-
+			<h5><span>Giá: <?php echo $this->Number->format($book['sale_price'],['places'=> 0,'after'=>'VNĐ']); ?></h5>
+			<span><a class="btn btn-primary" href="#">Thêm vào <i class="icon-shopping-cart"></i></a></span>
 		</div>
 	
 	</div>
