@@ -1,6 +1,5 @@
 <?php
-
-//$cakeDescription = 'Home: Books Store';
+    $cakeDescription = 'Books Store';
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,19 +22,20 @@
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 
-    <link rel="shortcut icon" href="themes/images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="themes/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="themes/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="themes/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="themes/images/ico/apple-touch-icon-57-precomposed.png">
+
+    <link rel="shortcut icon" href="/themes/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/themes/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/themes/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/themes/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/themes/images/ico/apple-touch-icon-57-precomposed.png">
     <style type="text/css" id="enject"></style>
 
 </head>
 <body>
     <div id="header">
         <div class="container-header">
-            <div class="container">
-                <a class="brand" href="<?php $this->Html->link(['controller'=>'books','action' => 'index']); ?>"><img src="themes/images/logo.png" alt="Bootsshop"/></a>                
+            <div class="container"> 
+                <a class="brand" href="index.php"><img src="themes/images/newlogo2.png" alt="Bootsshop"/></a>
                 <div class="account_desc">
                     <ul class="navbar-header">
                         <li><a href="#">Giới Thiệu</a></li>
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="wrap-box"></div>
+        <div class="wrap-box"></div>        
     </div>
 <!-- Header End====================================================================== -->
 <div id="mainBody">
@@ -68,14 +68,10 @@
                 </div>
                 <h4>Danh mục sách </h4>
                 <ul id="sideManu" class="nav nav-tabs nav-stacked">
-                    <!-- <li class="subMenu open"><a> Kỹ Năng Sống</a>
-                        <ul>
-                            <li><a class="active" href="products.html"><i class="icon-chevron-right"></i>Cameras (100) </a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Computers, Tablets & laptop (30)</a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Mobile Phone (80)</a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Sound & Vision (15)</a></li>
-                        </ul>
-                    </li> -->
+                <div class="well well-small">
+                <h4>Danh mục sách</h4>
+                <?php //echo $this->element('menu_categories'); ?>
+                </div>
                     <li><a href="danh-muc/van-hoc"> Kĩ Năng Sống</a></li>
                     <li><a href="danh-muc/van-hoc"> Kinh tế</a></li>
                     <li><a href="danh-muc/van-hoc"> Lịch sử</a></li>
@@ -84,15 +80,7 @@
                 </ul>
                 <br/>
                 <h4>Danh mục tác giả </h4>
-                <ul id="sideManu" class="nav nav-tabs nav-stacked">
-                    <!-- <li class="subMenu open"><a> Kỹ Năng Sống</a>
-                        <ul>
-                            <li><a class="active" href="products.html"><i class="icon-chevron-right"></i>Cameras (100) </a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Computers, Tablets & laptop (30)</a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Mobile Phone (80)</a></li>
-                            <li><a href="products.html"><i class="icon-chevron-right"></i>Sound & Vision (15)</a></li>
-                        </ul>
-                    </li> -->
+                <ul id="sideManu" class="nav nav-tabs nav-stacked">                   
                     <li><a href="tac-gia/philip-miller"> Philip Miller</a></li>
                     <li><a href="tac-gia/anđy-andrews"> Andy Andrews</a></li>
                     <li><a href="tac-gia/dat-lai-lat-ma"> Đạt Lai Lạt Ma</a></li>
@@ -103,7 +91,7 @@
                     <li><a href="tac-gia/dave-trott"> Dave Trott</a></li>
                 </ul>
                 <br/>
-            </div>                
+            </div>
             <!-- Sidebar end=============================================== -->
             <div class="span9">
                 <div class="well well-small">
@@ -113,7 +101,8 @@
                             <div class="carousel-inner">
                                 <div class="item active">
                                     <ul class="thumbnails">
-                                        <li class="span3">
+                                        
+                                         <li class="span3">
                                             <div class="thumbnail">
                                                 <i class="tag"></i>
                                                 <a href="anh-sang-vo-hinh"><img src="webroot/img/home/anh-sang-vo-hinh.jpg" alt=""></a>
@@ -156,7 +145,7 @@
                                                     <h5><span>Ernest Hemingway</span></h5>
                                                 </div>
                                             </div>
-                                        </li>
+                                        </li> 
                                     </ul>
                                 </div>
                                 <div class="item">
@@ -205,6 +194,7 @@
                                                 </div>
                                             </div>
                                         </li>
+                                        
                                     </ul>
                                 </div>
                             </div>

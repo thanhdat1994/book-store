@@ -67,8 +67,7 @@ class CommentsController extends AppController
                 $session = $this->request->session();
                 $session->write('comment_errors',$comment_errors);
             }
-            $this->redirect($this->referer());
-            
+            $this->redirect($this->referer());          
         }
         /*$users = $this->Comments->Users->find('list', ['limit' => 200]);
         $books = $this->Comments->Books->find('list', ['limit' => 200]);
