@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <ul id="sideManu" class="nav nav-tabs nav-stacked panel panel-default">
-                <h4><i class="fa fa-navicon"></i>&nbsp;&nbsp;Danh mục sách</h4>
+                <h4 style="margin-left: 10px;"><i class="fa fa-navicon"></i>&nbsp;&nbsp;Danh mục sách</h4>
                 <?php //echo $this->element('menu_categories'); ?>
                     <li><a href="danh-muc/ki-nang-song"> Kĩ Năng Sống</a></li>
                     <li><a href="danh-muc/kinh-te"> Kinh tế</a></li>
@@ -78,7 +78,7 @@
                 <br/>
                 
                 <ul id="sideManu" class="nav nav-tabs nav-stacked panel panel-default"> 
-                    <h4> <i class="fa fa-address-card-o"></i>&nbsp;&nbsp;Danh mục tác giả </h4>                  
+                    <h4 style="margin-left: 10px;"><i class="fa fa-address-card-o"></i>&nbsp;&nbsp;Danh mục tác giả </h4>                  
                     <li><a href="tac-gia/philip-miller"> Philip Miller</a></li>
                     <li><a href="tac-gia/anđy-andrews"> Andy Andrews</a></li>
                     <li><a href="tac-gia/dat-lai-lat-ma"> Đạt Lai Lạt Ma</a></li>

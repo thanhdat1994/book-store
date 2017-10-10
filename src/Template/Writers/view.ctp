@@ -18,7 +18,7 @@
     </div>
     <div class="panel panel-default" style="width: 872px;">
         <div>
-            <h4 class="panel-heading" style="border-color: #ddd; margin-left: 0px;"> <i class="fa fa-server"></i> Thông tin tác giả
+            <h4 class="panel-heading" style="border-color: #ddd;"> <i class="fa fa-server"></i> Thông tin tác giả
                 </h4>
                     <h3><?= h($writer->name) ?></h3>
             
@@ -27,7 +27,7 @@
 
     <div class="panel panel-default" style="width: 872px;">
         <div>
-            <h4 class="panel-heading" style="border-color: #ddd; margin-left: 0px;"> <i class="fa fa-server"></i> <?php echo $writer['name']; ?>
+            <h4 class="panel-heading" style="border-color: #ddd;"> <i class="fa fa-server"></i>&nbsp;&nbsp;<?php echo $writer['name']; ?>
                 </h4>
             <?php if (!empty($books)): ?>
                 <?php echo $this->element('books',['books'=>$books]); ?>
