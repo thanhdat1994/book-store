@@ -55,10 +55,10 @@
     <div class="container">
         <div class="row">
             <!-- Sidebar ================================================== -->
-            <div id="sidebar" class="span3">
+            <div id="sidebar" class="span3 pull-right">
                 <div class="form-inline">
                     <div class="input-search">
-                        <?php echo $this->Form->create('Books',['url'=>['action'=>'get_keyword'],'novalidator'=>true,'class'=>'form-control pull-right']); ?>
+                        <?php echo $this->Form->create('Books',['url'=>['action'=>'get_keyword'],'novalidator'=>true]); ?>
                         <?php echo $this->Form->input('keyword',['label'=>'','placeholder'=>'Tìm kiếm sách...','error'=>false]); ?>
                     </div>
                     <div class="input-btn">
@@ -66,21 +66,19 @@
                         <?php echo $this->Form->end(); ?>
                     </div>
                 </div>
-                <h4>Danh mục sách </h4>
-                <ul id="sideManu" class="nav nav-tabs nav-stacked">
-                <div class="well well-small">
-                <h4>Danh mục sách</h4>
+                <ul id="sideManu" class="nav nav-tabs nav-stacked panel panel-default">
+                <h4><i class="fa fa-navicon"></i>&nbsp;&nbsp;Danh mục sách</h4>
                 <?php //echo $this->element('menu_categories'); ?>
-                </div>
-                    <li><a href="danh-muc/van-hoc"> Kĩ Năng Sống</a></li>
-                    <li><a href="danh-muc/van-hoc"> Kinh tế</a></li>
-                    <li><a href="danh-muc/van-hoc"> Lịch sử</a></li>
+                    <li><a href="danh-muc/ki-nang-song"> Kĩ Năng Sống</a></li>
+                    <li><a href="danh-muc/kinh-te"> Kinh tế</a></li>
+                    <li><a href="danh-muc/lich-su"> Lịch sử</a></li>
                     <li><a href="danh-muc/van-hoc"> Văn Học</a></li>
                     <li><a href="danh-muc/giao-khoa"> Giáo Khoa</a></li>
                 </ul>
                 <br/>
-                <h4>Danh mục tác giả </h4>
-                <ul id="sideManu" class="nav nav-tabs nav-stacked">                   
+                
+                <ul id="sideManu" class="nav nav-tabs nav-stacked panel panel-default"> 
+                    <h4> <i class="fa fa-address-card-o"></i>&nbsp;&nbsp;Danh mục tác giả </h4>                  
                     <li><a href="tac-gia/philip-miller"> Philip Miller</a></li>
                     <li><a href="tac-gia/anđy-andrews"> Andy Andrews</a></li>
                     <li><a href="tac-gia/dat-lai-lat-ma"> Đạt Lai Lạt Ma</a></li>
@@ -203,10 +201,10 @@
                         </div>
                     </div>
                 </div>    
-                <ul class="thumbnails">
+                <div class="content">
                     <?= $this->Flash->render() ?>
                     <?= $this->fetch('content') ?>
-                </ul>
+                </div>
             </div>  
         </div>
     </div>

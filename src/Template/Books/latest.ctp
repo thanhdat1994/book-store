@@ -1,6 +1,6 @@
-<div class="panel panel-default">
-<h4 class="panel-heading"><i class="gylphicon glyphicon th">Sách mới</i>
-<small class="sorts pull-fight">Sắp xếp theo
+<div class="panel panel-default" style="width: 872px;">
+<h4 class="panel-heading"> <i class="fa fa-server"></i> Sách mới
+<small class="sorts pull-right">Sắp xếp theo
 <?php echo $this->Paginator->sort('title','Sắp xếp theo tên sách'); ?>
 <?php echo $this->Paginator->sort('created','Mới nhất/Cũ nhất'); ?>
 </small></h4>
