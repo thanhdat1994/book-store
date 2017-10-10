@@ -126,3 +126,19 @@ a {
 .paginator{
 	text-align: center;
 }
+.content-writer strong{
+	margin-left: 20px;
+}
+.content-writer p{
+	margin-left: 30px;
+}
+.content-book{
+	margin-left: 20px;
+}
+.image-book{
+	margin-left: 20px;
+	height: 175px;
+}
+.panel-heading{
+	border-color: #ddd;
+}
