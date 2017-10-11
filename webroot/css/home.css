@@ -136,9 +136,23 @@ a {
 	margin-left: 20px;
 }
 .image-book{
-	margin-left: 20px;
 	height: 175px;
+	width: 175px;
+	float: left;
+}
+.content-info{
+	margin-left: 20px;
 }
 .panel-heading{
 	border-color: #ddd;
+}
+.detail{
+	width:850px;
+	height: 175px;
+}
+.detail-child{
+	width: 650px;
+	height: 175px;
+	float: right;
+	margin-left: 20px;
 }

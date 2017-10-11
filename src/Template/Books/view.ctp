@@ -9,24 +9,32 @@
     <div class="panel panel-default" style="width: 872px;">
         <div class="related">
             <h4 class="panel-heading"><i class="fa fa-book"></i>&nbsp;&nbsp;<?= h($book->title) ?></h4>
-            <div class="content-book">
-                <strong>Title: </strong><?= h($book->title) ?></td>
-            </div>
-            <div class="image-book">
-                <?php echo $this->Html->image($book['image'],['class'=>'img img-responsive']); ?>
-            </div>
-            <div class="content-book">
-                <strong>Publisher: </strong><?= h($book->publisher) ?></td>
-            </div>
-            <div class="content-book">
-                <strong>Sale Price: </strong><?= $this->Number->format($book->sale_price,['places'=> 0,'after'=>' VNĐ']) ?></td>
-            </div>
-            <div class="content-book">
-                <strong>Comments: </strong><?= $this->Number->format($book->comment_count,['places'=>0,'before'=>'(','after'=>') Comments'])?></td>
-            </div>
-            <div class="content-book">
-                <strong>Info: </strong></br>
-                <?= $this->Text->autoParagraph(h($book->info)); ?>
+            <!-- div image -->
+            <div class="content-book">   
+                <div class="detail">
+                    <div class="image-book">
+                        <?php echo $this->Html->image($book['image'],['class'=>'img img-responsive']); ?>
+                    </div></br>
+                    <div class="detail-child">
+                        <div>
+                            <strong><?= h($book->title) ?></td></strong></br>
+                        </div>
+                        <div>
+                            <strong>Publisher: </strong><?= h($book->publisher) ?></td></br>
+                        </div>
+                        <div>
+                            <strong>Sale Price: </strong><?= $this->Number->format($book->sale_price,['places'=> 0,'after'=>' VNĐ']) ?></td></br>
+                        </div>
+                        <div>
+                            <strong>Comments: </strong><?= $this->Number->format($book->comment_count,['places'=>0,'before'=>'(','after'=>') Comments'])?></td></br>
+                        </div>
+                        <span><a class="btn btn-primary" href="#">Thêm vào <i class="fa fa-shopping-cart"></i></a></span>
+                    </div>
+                </div>
+                <div>
+                    <strong>Info: </strong></br>
+                    <?= $this->Text->autoParagraph(h($book->info)); ?>
+                </div>
             </div>
             <!-- Hiển thị tác giả -->
             <div class="content-book">

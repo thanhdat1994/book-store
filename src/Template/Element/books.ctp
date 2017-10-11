@@ -14,7 +14,7 @@
 				}  ?></h5>				
 			</div>
 			<h5><span>Giá: <?php echo $this->Number->format($book['sale_price'],['places'=> 0,'after'=>'VNĐ']); ?></h5>
-			<span><a class="btn btn-primary" href="#">Thêm vào <i class="icon-shopping-cart"></i></a></span>
+			<span><a class="btn btn-primary" href="#">Thêm vào <i class="fa fa-shopping-cart"></i></a></span>
 		</div>
 	
 	</div>
