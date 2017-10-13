@@ -35,7 +35,7 @@
     <div id="header">
         <div class="container-header">
             <div class="container"> 
-                <a class="brand" href="index.php"><img src="themes/images/newlogo2.png" alt="BookStore"/></a>
+                <a class="brand" href="index.php"><img src="themes/images/mainlogo.png" alt="BookStore"/></a>
                 <div class="account_desc">
                     <ul class="navbar-header">
                         <li><a href="#">Giới Thiệu</a></li>
@@ -257,3 +257,4 @@
 
 </body>
 </html>
+

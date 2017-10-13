@@ -17,16 +17,16 @@
                     </div></br>
                     <div class="detail-child">
                         <div>
-                            <strong><?= h($book->title) ?></td></strong></br>
+                            <h5><?= h($book->title) ?></td></strong></h5>
                         </div>
                         <div>
-                            <strong>Publisher: </strong><?= h($book->publisher) ?></td></br>
+                            <strong>Publisher: </strong><?= h($book->publisher) ?></br>
                         </div>
                         <div>
-                            <strong>Sale Price: </strong><?= $this->Number->format($book->sale_price,['places'=> 0,'after'=>' VNĐ']) ?></td></br>
+                            <strong>Sale Price: </strong><?= $this->Number->format($book->sale_price,['places'=> 0,'after'=>' VNĐ']) ?></br>
                         </div>
                         <div>
-                            <strong>Comments: </strong><?= $this->Number->format($book->comment_count,['places'=>0,'before'=>'(','after'=>') Comments'])?></td></br>
+                            <strong>Comments: </strong><?= $this->Number->format($book->comment_count,['places'=>0,'before'=>'(','after'=>') Comments'])?></br>
                         </div>
                         <span><a class="btn btn-primary" href="#">Thêm vào <i class="fa fa-shopping-cart"></i></a></span>
                     </div>
