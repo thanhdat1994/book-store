@@ -62,7 +62,7 @@ class CategoriesController extends AppController
         $this->paginate = [
             'fields' => ['id','title','image','sale_price','slug'],
             'order' => ['created' =>'desc'],
-            'limit' => 3,
+            'limit' => 9,
             'conditions' => ['published'=>1,'Categories.slug'=>$slug],
             'contain' => ['Writers','Categories']
             ];

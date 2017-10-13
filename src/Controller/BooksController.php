@@ -105,7 +105,7 @@ class BooksController extends AppController
                 'Books.id <>' => $book['id'] 
                 ],
             'contain' => ['Writers'],
-            'limit' => 5,
+            'limit' => 3,
             'order' => 'rand()'
             ]);
         $this->set('related_books', $related_books);
@@ -236,7 +236,7 @@ class BooksController extends AppController
             $this->paginate = [
                 'fields'=>['id','title','image','sale_price','slug'],
                 'contain' => ['Writers'],
-                'limit' => 5,
+                'limit' => 6,
                 'group' => 'Books.id',
                 'order' => ['Books.created' => 'desc'],                    
                 'conditions' => [
