@@ -226,7 +226,7 @@ class BooksController extends AppController
     }    
     /*
     add_to_cart
-    */
+    */ 
     public function addToCart($id = null){
         if ($this->request->is('post')) {
             // tạo session
@@ -240,21 +240,50 @@ class BooksController extends AppController
                 $item=$session->read('cart.'.$id);
                 $item['quantity'] +=1;
             }else{
-                $item = ['id'=>$book['Books']['id'],
-                    'title'=>$book['Books']['title'],
-                    'slug'=>$book['Books']['slug'],
-                    'sale_price'=>$book['Books']['sale_price'],
+                $item = ['id'=>$book['id'],
+                    'title'=>$book['title'],
+                    'slug'=>$book['slug'],
+                    'sale_price'=>$book['sale_price'],
                     'quantity'=>1
                 ];
             }
 
             //create session cart
-            
             $session->write('cart.'.$id,$item);
+
+            $cart=$session->read('cart');
+            $total = $this->Sum_Price($cart);
+            $session->write('payment.total',$total);
             $this->Flash->success(' Đã thêm vào giỏ hàng!','default',['class'=>'alert alert-info'],'cart');
             $this->redirect($this->referer());
         }
     }
+    /*
+        xem chi tiết giỏ hàng
+    */
+        public function viewCart(){
+            $session = $this->request->session();
+            $cart = $session->read('cart');
+            $payment = $session->read('payment');
+
+            $this->set(compact('cart','payment'));
+            $this->set('title_for_layout',"Giỏ Hàng");
+        }
+        /*
+            xóa sản phẩm trong giỏ hàng
+        */
+        public function delete_sp($id = null){
+            $session = $this->request->session();
+            $cart = $session->read('cart');
+
+
+        }
+    /*
+        empty cart
+    */
+        public function empty_cart(){
+            
+        }
     /**
      * search
      */

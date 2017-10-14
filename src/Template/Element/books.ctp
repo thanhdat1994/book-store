@@ -15,7 +15,7 @@
 			</div>
 			<h5><span>Giá: <?php echo $this->Number->format($book['sale_price'],['places'=> 0,'after'=>'VNĐ']); ?></h5>
 			<!-- Thêm giỏ hàng -->
-             <?php echo $this->Form->postLink('Thêm vào <i class="fa fa-shopping-cart"></i>','/books/add_to_cart/'.$book['Books']['id'],['class'=>'btn btn-primary','escape'=>false]); 
+             <?php echo $this->Form->postLink('Thêm vào <i class="fa fa-shopping-cart"></i>','/books/add_to_cart/'.$book['id'],['class'=>'btn btn-primary','escape'=>false]); 
              ?>
 		</div>
 	

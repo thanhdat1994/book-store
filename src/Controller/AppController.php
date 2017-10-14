@@ -27,7 +27,7 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
-
+    /*public $components = ['Tool'];*/
     /**
      * Initialization hook method.
      *
@@ -68,5 +68,15 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+    }
+
+    /* tính tổng giá trị giỏ hàng*/
+    public function Sum_Price($cart){
+        $total=0;
+        foreach ($cart as $book) { 
+                # code...
+            $total += $book['quantity']*$book['sale_price'];
+        }
+        return $total;
     }
 }

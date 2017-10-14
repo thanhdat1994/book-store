@@ -3,14 +3,10 @@
  ?>
  <?php if ($session->check('cart')): ?>
  <?php $cart = $session->read('cart'); ?>
- 	<ul id="sideManu" class="nav nav-tabs nav-stacked panel panel-default">
-	     <h4 style="margin-left: 10px;"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Giỏ hàng</h4>
-		 <?php foreach ($cart as $book): ?>
-		    <?php //echo $this->element('menu_categories'); ?>
-			<li><a href="danh-muc/ki-nang-song"></a></li>
-		
-		 <?php endforeach ?>
-	 </ul>
+	<div style="text-align:center;">
+		<?php echo $this->Html->link('Chi tiết giỏ hàng','/gio-hang',['class'=>"btn btn-primary"]); ?>
+	</div>
+	
 <?php else: ?>
 	Không có sản phẩm trong giỏ hàng!
 <?php endif ?>

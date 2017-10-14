@@ -156,3 +156,15 @@ a {
 	float: right;
 	margin-left: 20px;
 }
+.pricetotal{
+	float: right;
+	background: #ddd;
+	margin-right: 30px;
+}
+.thumbnail p{
+	text-align: center;
+}
+.table{
+	width:860px;
+	margin-left: 30PX;
+}

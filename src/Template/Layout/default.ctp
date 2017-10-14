@@ -42,7 +42,9 @@
                         <li><a href="#">Liên Hệ</a></li>
                         <li><a href="#">Đăng Kí</a></li>
                         <li><a href="#">Đăng Nhập</a></li>
-                        <li><a href="#">Giỏ Hàng</a></li>
+                        <li>
+                            <?php echo $this->Html->link('Giỏ Hàng','/gio-hang'); ?>
+                        </li>
                         <li><a href="#">Tài Khoản</a></li>
                     </ul>
                 </div>
@@ -66,11 +68,10 @@
                         <?php echo $this->Form->end(); ?>
                     </div>
                 </div>
-                 <ul id="sideManu" class="nav nav-tabs nav-stacked panel panel-default">
-                    <h4 style="margin-left: 10px;"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Giỏ hàng</h4>
-                    <?php //echo $this->element('menu_categories'); ?>
-                        <li><a href="danh-muc/ki-nang-song"></a></li>
-                </ul>
+                <div id="sideManu" class="nav nav-tabs nav-stacked panel panel-default">
+                    <h4 class="panel-heading"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;Giỏ Hàng</h4>
+                    <?php echo $this->element('cart'); ?>
+                </div>
                     <br/>
                 <ul id="sideManu" class="nav nav-tabs nav-stacked panel panel-default">
                 <h4 style="margin-left: 10px;"><i class="fa fa-navicon"></i>&nbsp;&nbsp;Danh mục sách</h4>
