@@ -224,8 +224,37 @@ class BooksController extends AppController
             $this->redirect(['action'=>'search','keyword'=>$keyword]);
         }
     }    
+    /*
+    add_to_cart
+    */
+    public function addToCart($id = null){
+        if ($this->request->is('post')) {
+            // tạo session
+            $session=$this->request->session();
+            // Tìm thông tin
+            $book=$this->Books->find('all',[
+                'recursive'=>-1,
+                'conditions'=>['Books.id'=>$id]
+                ])->first();
+            if ($session->check('cart.'.$id)) {
+                $item=$session->read('cart.'.$id);
+                $item['quantity'] +=1;
+            }else{
+                $item = ['id'=>$book['Books']['id'],
+                    'title'=>$book['Books']['title'],
+                    'slug'=>$book['Books']['slug'],
+                    'sale_price'=>$book['Books']['sale_price'],
+                    'quantity'=>1
+                ];
+            }
 
-
+            //create session cart
+            
+            $session->write('cart.'.$id,$item);
+            $this->Flash->success(' Đã thêm vào giỏ hàng!','default',['class'=>'alert alert-info'],'cart');
+            $this->redirect($this->referer());
+        }
+    }
     /**
      * search
      */

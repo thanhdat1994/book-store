@@ -4,6 +4,8 @@
   * @var \App\Model\Entity\Book $book
   */
 ?>
+<?php $session=$this->request->session();
+        pr($session->read('cart')); ?>
 <div class="books view large-9 medium-8 columns content">
     <!-- update 10/10 -->
     <div class="panel panel-default" style="width: 872px;">
@@ -28,7 +30,9 @@
                         <div>
                             <strong>Comments: </strong><?= $this->Number->format($book->comment_count,['places'=>0,'before'=>'(','after'=>') Comments'])?></br>
                         </div>
-                        <span><a class="btn btn-primary" href="#">Thêm vào <i class="fa fa-shopping-cart"></i></a></span>
+                        <!-- Thêm giỏ hàng -->
+                        <?php echo $this->Form->postLink('Thêm vào <i class="fa fa-shopping-cart"></i>','/books/add_to_cart/'.$book['Books']['id'],['class'=>'btn btn-primary','escape'=>false]); 
+                        ?>
                     </div>
                 </div>
                 <div>
