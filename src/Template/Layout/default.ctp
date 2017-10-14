@@ -140,9 +140,11 @@
 </div>
 
 
-    <?= $this->Html->script('jquery.js') ?>
-    <?= $this->Html->script('bootstrap.min.js') ?>
+    <?= $this->Html->script('jquery-3.2.1.min.js') ?>
     <?= $this->Html->script('prettify.js') ?>
+    
+    <?= $this->Html->script('bootstrap.min.js') ?>
+    <?= $this->Html->script('owl.carousel.js') ?>
     <?= $this->Html->script('bootshop.js') ?>
     <?= $this->Html->script('jquery.lightbox-0.5.js') ?>
 
