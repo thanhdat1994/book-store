@@ -168,3 +168,10 @@ a {
 	width:860px;
 	margin-left: 30PX;
 }
+.cart_link{
+	width: 870px;
+	display: inline;
+}
+.panel .panel-success{
+	margin-top: 10px;
+}

@@ -48,7 +48,7 @@ class CouponsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    /*public function add()
     {
         $coupon = $this->Coupons->newEntity();
         if ($this->request->is('post')) {
@@ -62,8 +62,35 @@ class CouponsController extends AppController
         }
         $this->set(compact('coupon'));
         $this->set('_serialize', ['coupon']);
-    }
+    }*/
 
+    /* add coupons*/
+    public function add(){
+        if ($this->request->is('post')) {
+            # code...
+            $session = $this->request->session();
+            $code = $this->request->getData['Coupons']['code'];
+            pr($code); 
+            $coupon = $this->Coupons->findByCode($code);
+            if (!empty($coupon)) {
+                # code...
+                $today = date('Y-m-d H:i:s');
+                if($this->between($today,$coupon['time_start'],$coupon['time_end'])) {
+                    # code...
+                        $session->write('payment.coupon',$coupon['code']);
+                        $session->write('payment.discount',$coupon['percent']);
+                        $total = $session->read('payment.total');
+                        $pay = $total - $coupon['percent']/ 100 * $total;
+                        $sesion->write('payment.pay',$pay);
+                }else{
+                     $this->Flash->set('Mã giảm giá đã hết hạn!',['default',['class'=>'alert alert-danger'],'coupons']);
+                }
+            }else{
+                $this->Flash->set('Mã giảm giá không tồn tại!',['default',['class'=>'alert alert-danger'],'coupons']);
+            }
+            $this->redirect($this->referer());
+        }
+    }
     /**
      * Edit method
      *
@@ -108,4 +135,17 @@ class CouponsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+    /*create function check coupon*/
+    /*public function between($date, $start, $end, $timezone = 'Asia/Ho_Chi_Minh'){
+            date_default_timezone_set($timezone);
+            $date = strtotime($date);
+            $start = strtotime($start);
+            $end = strtotime($end);
+            if ($date >= $start && $date <=$end) {
+                # code...
+                return true;
+            }else{
+                return false;
+            }
+        }*/
 }

@@ -250,10 +250,14 @@ class BooksController extends AppController
 
             //create session cart
             $session->write('cart.'.$id,$item);
-
             $cart=$session->read('cart');
             $total = $this->Sum_Price($cart);
             $session->write('payment.total',$total);
+            // kiểm tra mã giảm giá
+            if ($session->check('payment.coupon')) {
+                # code...
+                $pay=$total-$session->read('payment.discount')/100*$total;
+            }
             $this->Flash->success(' Đã thêm vào giỏ hàng!','default',['class'=>'alert alert-info'],'cart');
             $this->redirect($this->referer());
         }
@@ -272,17 +276,34 @@ class BooksController extends AppController
         /*
             xóa sản phẩm trong giỏ hàng
         */
-        public function delete_sp($id = null){
-            $session = $this->request->session();
-            $cart = $session->read('cart');
-
-
+        public function deleteSp($id = null){
+            if ($this->request->is('post')) {
+                # code...
+                $session = $this->request->session();
+                $session->delete('cart.'.$id);
+                $cart = $session->read('cart');
+                if (empty($cart)) {
+                    $this->emptyCart();
+                    # code...
+                }else{
+                    $total = $this->Sum_Price($cart);
+                    $session->write('payment.total',$total);
+                }
+                $this->redirect($this->referer());
+            }
         }
     /*
         empty cart
     */
-        public function empty_cart(){
-            
+        public function emptyCart(){
+            if ($this->request->is('post')) {
+                # code...
+                $session=$this->request->session();
+                $session->delete('cart');
+                $session->delete('payment.total');
+                $session->delete('payment.coupon');
+                $this->redirect($this->referer());
+            }
         }
     /**
      * search

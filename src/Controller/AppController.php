@@ -27,7 +27,7 @@ use Cake\Event\Event;
  */
 class AppController extends Controller
 {
-    /*public $components = ['Tool'];*/
+   /* public $components = ['Tool'];*/
     /**
      * Initialization hook method.
      *
@@ -79,4 +79,19 @@ class AppController extends Controller
         }
         return $total;
     }
+
+    /* kiểm tra coupon còn hạn hay không*/
+    public function between($date, $start, $end, $timezone = 'Asia/Ho_Chi_Minh'){
+            date_default_timezone_set($timezone);
+            $date = strtotime($date);
+            $start = strtotime($start);
+            $end = strtotime($end);
+            if ($date >= $start && $date <=$end) {
+                # code...
+                return true;
+            }else{
+                return false;
+            }
+        }
 }
+?>
