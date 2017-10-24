@@ -43,6 +43,16 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+            'loginAction' => '/login',
+            'authError' => 'Bạn cần phải đăng nhập để tiếp tục',
+            'flash' => [
+                'element' => 'default',
+                'key' => 'auth',
+                'params' => ['class'=>'alert alert-danger']
+            ],
+            'loginRedirect' => '/'
+        ]);
 
         /*
          * Enable the following components for recommended CakePHP security settings.

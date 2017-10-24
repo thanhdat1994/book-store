@@ -113,4 +113,21 @@ class UsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function login(){
+        if ($this->request->is('post')) {
+            if($this->Auth->user()){
+                $this->redirect(['controller'=>'Books','action'=>'index']);
+                $this->Flash->success(__('Đăng nhập thành công'));
+            } else{
+                $this->Flash->error(__('Sai tên đăng nhập hoặc mật khẩu'));
+            }
+        }
+        $this->set('title_for_layout','Đăng nhập');        
+    }
+
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
 }
