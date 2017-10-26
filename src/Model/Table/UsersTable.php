@@ -26,6 +26,8 @@ use Cake\Validation\Validator;
 class UsersTable extends Table
 {
 
+    public $virtualFields = ['fullname' => 'concat(Users.lastname, " ", Users.firstname)'];
+
     /**
      * Initialize method
      *

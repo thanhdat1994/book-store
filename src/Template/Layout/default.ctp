@@ -1,4 +1,4 @@
-<?php
+ <?php
     $cakeDescription = 'Books Store';
 ?>
 <!DOCTYPE html>
@@ -17,6 +17,7 @@
     <?= $this->Html->css('font-awesome/css/font-awesome.css') ?>
     <?= $this->Html->css('prettify.css') ?>
     <?= $this->Html->css('home.css') ?>
+    <?= $this->Html->css('common.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -34,21 +35,7 @@
 <body>
     <div id="header">
         <div class="container-header">
-            <div class="container"> 
-                <a class="brand" href="index.php"><img src="themes/images/mainlogo.png" alt="BookStore"/></a>
-                <div class="account_desc">
-                    <ul class="navbar-header">
-                        <li><a href="#">Giới Thiệu</a></li>
-                        <li><a href="#">Liên Hệ</a></li>
-                        <li><a href="#">Đăng Kí</a></li>
-                        <li><a href="#">Đăng Nhập</a></li>
-                        <li>
-                            <?php echo $this->Html->link('Giỏ Hàng','/gio-hang'); ?>
-                        </li>
-                        <li><a href="#">Tài Khoản</a></li>
-                    </ul>
-                </div>
-            </div>
+            <?php echo $this->element('header'); ?>
         </div>
         <div class="wrap-box"></div>        
     </div>
@@ -149,7 +136,7 @@
 
     <?= $this->Html->script('jquery-3.2.1.min.js') ?>
     <?= $this->Html->script('prettify.js') ?>
-    
+    <?= $this->Html->script('common.js') ?>
     <?= $this->Html->script('bootstrap.min.js') ?>
     <?= $this->Html->script('owl.carousel.js') ?>
     <?= $this->Html->script('bootshop.js') ?>

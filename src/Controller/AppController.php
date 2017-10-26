@@ -78,6 +78,19 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+
+        
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['index', 'latest', 'view', 'getKeyword', 'search', 'menu','viewCart']);
+        $this->set('user_info', $this->get_user());
+    }
+
+    public function get_user()
+    {
+        return $this->Auth->user();
     }
 
     /* tính tổng giá trị giỏ hàng*/

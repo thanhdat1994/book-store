@@ -115,13 +115,14 @@ class UsersController extends AppController
     }
 
     public function login(){
-        if ($this->request->is('post')) {
-            if($this->Auth->user()){
-                $this->redirect(['controller'=>'Books','action'=>'index']);
-                $this->Flash->success(__('Đăng nhập thành công'));
-            } else{
-                $this->Flash->error(__('Sai tên đăng nhập hoặc mật khẩu'));
+        if($this->request->is('post')){
+            $user = $this->Auth->identify();
+            if($user){
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+                //return $this->redirect(['controller'=>'books','action'=>'index']);           
             }
+            $this->Flash->error(__('Sai tên đăng nhập hoặc mật khẩu.'));
         }
         $this->set('title_for_layout','Đăng nhập');        
     }

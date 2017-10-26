@@ -58,6 +58,8 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/tac-gia/*',array('controller'=>'Writers','action'=>'view'));
     $routes->connect('/login',array('controller'=>'Users','action'=>'login'));
     $routes->connect('/logout',array('controller'=>'Users','action'=>'logout'));
+    $routes->connect('/signup',array('controller'=>'Users','action'=>'signup'));
+    $routes->connect('/gio-hang',array('controller'=>'Books','action'=>'viewCart'));
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.

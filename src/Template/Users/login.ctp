@@ -3,7 +3,10 @@
         <div class="panel-heading"> <h3 class="panel-title text-center">Đăng nhập vào hệ thống</h3></div>
         <?php //echo $this->Session->Flash('auth'); ?>
         <div class="panel-body">
-            <?php echo $this->Form->create('Users', array('class'=>"form-horizontal",'inputDefaults'=>['label'=>false]))?>
+            <?php if (!empty($user_info)): ?>
+                Bạn đã đăng nhập, click vào đây để quay về <?php echo $this->Html->link('trang chủ','/'); ?>
+            <?php else: ?>
+                <?php echo $this->Form->create('Users', array('class'=>"form-horizontal",'inputDefaults'=>['label'=>false]))?>
                 <div class="control-group">
                     <div class="col-sm-4 col-xs-3 pull-left" title="Tên đăng nhập">
                         Tên đăng nhập
@@ -25,11 +28,11 @@
                         <button type="submit" class="btn btn btn-primary">Đăng nhập</button>
                     </div>
                 </div>
-                <!-- <div>
-                    <span>Bạn chưa có tài khoản?</span>
-                    <a href="<?php echo $this->Html->url(array('action' => "sign_up")); ?>">Đăng ký</a>
-                </div> -->
-            <?php echo $this->Form->end(); ?>
+                <div>
+                    Bạn chưa có tài khoản, click vào đây để <?php echo $this->Html->link('đăng kí','/signup'); ?>
+                </div>
+                <?php echo $this->Form->end(); ?>
+            <?php endif ?>
         </div>
     </div>
 </div>
