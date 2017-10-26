@@ -113,4 +113,24 @@ class OrdersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    /*checkout*/
+    public function checkout(){
+        $session=$this->request->session();
+        if ($this->request->is('post'){
+            # code...
+            $data = ['user_id'=>1,
+            'order_info'=>json_encode($session->read('cart')),
+            'customer_info'=>json_encode($this->request->getData['Orders']),
+            'payment_info'=>json_encode($session->read('payment')),
+            'status'=>0]
+            if ($this->Orders->save($data)) {
+                # code...
+                $session->delete('cart');
+                $session->delete('payment');
+            }else{
+                $this->Flash->set("Thanh toán không thực hiện được!",'default',['class'=>"alert alert-danger",'orders']);
+            }
+        }
+    }
 }

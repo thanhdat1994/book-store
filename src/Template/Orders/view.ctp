@@ -4,7 +4,6 @@
   * @var \App\Model\Entity\Order $order
   */
 ?>
-<!-- bản cũ 
     <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
@@ -52,6 +51,4 @@
         <h4><?= __('Payment Info') ?></h4>
         <?= $this->Text->autoParagraph(h($order->payment_info)); ?>
     </div>
-</div> -->
-
-<!-- view đặt hàngs -->
+</div> 

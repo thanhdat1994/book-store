@@ -98,7 +98,7 @@
 					<div class="cart_link">
 						<?php echo $this->Form->postLink('Làm rỗng giỏ hàng','/books/empty_cart',['class'=>"btn btn-primary",'style'=>"float:left; margin-left:150px;"]); ?>
 						<?php echo $this->Html->link('Tiếp tục mua hàng','/',['class'=>"btn btn-primary",'style'=>'margin-left:150px;']); ?>
-						<?php echo $this->Html->link('Đặt hàng','/#',['class'=>"btn btn-primary", 'style'=>"float:right; margin-right:80px;"]); ?>
+						
 					</div>
 				</div>
 
@@ -124,6 +124,32 @@
 							<li>Số tiền giảm giá dựa trên % giảm giá * tổng giá trị của đơn hàng.</li>
 						</ul>
 				<?php endif ?>
+		</div>
+		<!-- order -->
+		<div class="panel panel-success col col-lg-7" style="margin-top:10px; float:right;">
+			<h4 class='panel-heading'><i class="fa fa-user"></i>&nbsp; &nbsp; Thông tin đặt hàng</h4>
+			<?php if (true): ?>
+				<?php echo $this->Form->create('Orders',['url'=>['controller'=>'orders','action'=>'checkout'], 'class'=>'form-horizontal']); ?>
+					 <div class="col col-lg-10">
+					 	<?php echo $this->Form->input('name',['placeholder'=>"Nhập tên",'label'=>"Tên: ",'value'=>"TranLong"]); ?>
+					 </div>
+					 <div class="col col-lg-10">
+					 	<?php echo $this->Form->input('email',['placeholder'=>"Nhập email",'value'=>"long.tv@bookstore.com"]); ?>
+					 </div>
+					 <div class="col col-lg-10">
+					 	<?php echo $this->Form->input('address',['placeholder'=>"Nhập địa chỉ",'label'=>"Địa chỉ: ",'value'=>"31 Vo Truong Toan"]); ?>
+					 </div>
+					 <div class="col col-lg-10">
+					 	<?php echo $this->Form->input('phone',['placeholder'=>"Nhập số diện thoại",'label'=>"Số điện thoại: ",'value'=>"01684669005"]); ?>
+					 </div>
+					<div class="row">
+						<?php echo $this->Html->link('Đặt hàng','#',['class'=>"btn btn-primary", 'style'=>"float:right; margin-right:80px;"]); ?>
+					</div>
+				<?php echo $this->Form->end(); ?>
+			<?php else: ?>
+				Bạn phải đăng nhập trước khi đặt hàng!
+			<?php endif ?>
+			
 		</div>
 	<?php else: ?>
 	<div class="thumbnail">
