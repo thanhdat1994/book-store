@@ -60,6 +60,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/logout',array('controller'=>'Users','action'=>'logout'));
     $routes->connect('/signup',array('controller'=>'Users','action'=>'signup'));
     $routes->connect('/gio-hang',array('controller'=>'Books','action'=>'viewCart'));
+    $routes->connect('/doi-mat-khau',array('controller'=>'Users','action'=>'change_password'));
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.

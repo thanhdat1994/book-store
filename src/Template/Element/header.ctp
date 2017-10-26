@@ -18,7 +18,7 @@
 						<?php echo $this->Html->link('Thông tin tài khoản','/#'); ?>
 					</li>
 					<li>
-						<?php echo $this->Html->link('Đổi mật khẩu','/#'); ?>
+						<?php echo $this->Html->link('Đổi mật khẩu','/doi-mat-khau'); ?>
 					</li>
 					<li>
 						<?php echo $this->Html->link('Đăng xuất','/logout'); ?>
