@@ -120,7 +120,7 @@ class OrdersController extends AppController
         if ($this->request->is('post'){
             # code...
             $data = ['user_id'=>1,
-            'order_info'=>json_encode($session->read('cart')),
+            'orders_info'=>json_encode($session->read('cart')),
             'customer_info'=>json_encode($this->request->getData['Orders']),
             'payment_info'=>json_encode($session->read('payment')),
             'status'=>0]

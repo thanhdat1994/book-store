@@ -54,8 +54,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/sach-moi', ['controller' => 'Books', 'action' => 'latest']);
     $routes->connect('/tac-gia', ['controller' => 'Writers', 'action' => 'index']);
     $routes->connect('/:book_title', ['controller' => 'Books', 'action' => 'view'],['pass'=>['book_title']]);
-    $routes->connect('/danh-muc/*',array('controller'=>'Categories','action'=>'view'));
-    $routes->connect('/tac-gia/*',array('controller'=>'Writers','action'=>'view'));
+    $routes->connect('/danh-muc/*',['controller'=>'Categories','action'=>'view']);
+    $routes->connect('/tac-gia/*',['controller'=>'Writers','action'=>'view']);
+    $routes->connect('/gio-hang/*',['controller'=>'Books','action'=>'view_cart']);
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
