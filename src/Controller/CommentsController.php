@@ -12,12 +12,11 @@ use App\Controller\AppController;
  */
 class CommentsController extends AppController
 {
-
-    public function beforeFilter(Event $event)
+    /*public function beforeFilter(Event $event)
     {
         parent::beforeFilter();
         $this->Auth->allow(['add']);
-    }
+    }*/
 
     /**
      * Index method
@@ -63,8 +62,6 @@ class CommentsController extends AppController
         if ($this->request->is('post')) {
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
             if($this->Comments->validator()){
-                $user = $this->Auth->user();
-                $this->request->data['Comments']['user_id'] = $user['id'];
                 if ($this->Comments->save($comment)) {
                     $this->Flash->success(__('Đã gởi nhận xét.'));               
                 }else{

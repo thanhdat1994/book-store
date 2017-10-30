@@ -3,7 +3,7 @@
         <div class="panel-heading"> <h3 class="panel-title text-center">Đổi mật khẩu</h3></div>
         <?php //echo $this->Session->Flash('auth'); ?>
         <div class="panel-body">
-            <?php if (!empty($user_info)): ?>
+            <?php if (empty($user_info)): ?>
                 <?php echo $this->Session->Flash('auth'); ?>
                 <?php echo $this->element('error'); ?>
                 Bạn đã đăng nhập, click vào đây để quay về <?php echo $this->Html->link('trang chủ','/'); ?>

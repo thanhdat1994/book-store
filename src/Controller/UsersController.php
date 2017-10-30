@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * Users Controller
@@ -12,6 +13,25 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->Auth->config('authenticate', ['Form']);
+        $this->loadComponent('RequestHandler');
+        $this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+            'loginAction' => '/login',
+            'authError' => 'Bạn cần phải đăng nhập để tiếp tục',
+            'flash' => [
+                'element' => 'default',
+                'key' => 'auth',
+                'params' => ['class'=>'alert alert-danger']
+            ],
+            'loginRedirect' => '/'
+        ]);        
+    }
 
     /**
      * Index method
@@ -124,7 +144,11 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('Sai tên đăng nhập hoặc mật khẩu.'));
         }
-        $this->set('title_for_layout','Đăng nhập');        
+        // $password = "admin";
+        // $hasher = new DefaultPasswordHasher();
+        
+        // $this->set('pass',$hasher->hash($password));
+        $this->set('cakeDescription','Đăng nhập');        
     }
 
     public function logout()
@@ -147,6 +171,6 @@ class UsersController extends AppController
                 $session->write('errors',$errors);
             }
         }
-        $this->set('title_for_layout','Đổi mật khẩu');
-    }
+        $this->set('cakeDescription','Đổi mật khẩu');
+    }    
 }

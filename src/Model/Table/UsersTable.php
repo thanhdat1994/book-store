@@ -81,9 +81,9 @@ class UsersTable extends Table
                         'message' => 'Mật khẩu phải có độ dài tối thiểu là 6 ký tự',
                      ]
                 ]);
-        $validator
-            ->requirePresence('confirm_pasword', 'create')
-            ->notEmpty('confirm_pasword','Xác nhận mật khẩu không được để trống');    
+        // $validator
+        //     ->requirePresence('confirm_pasword', 'create')
+        //     ->notEmpty('confirm_pasword','Xác nhận mật khẩu không được để trống');    
 
         $validator
             ->email('email')
