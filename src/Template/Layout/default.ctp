@@ -105,7 +105,7 @@
             <div class="span3">
                 <h5>INFORMATION</h5>
                 <a href="contact.html">CONTACT</a>  
-                <a href="register.html">REGISTRATION</a>  
+                <a href="signup.php">REGISTRATION</a>  
                 <a href="legal_notice.html">LEGAL NOTICE</a>  
                 <a href="tac.html">TERMS AND CONDITIONS</a> 
                 <a href="faq.html">FAQ</a>
@@ -128,8 +128,6 @@
         <p class="pull-right">&copy; Bootshop</p>
     </div><!-- Container End -->
 </div>
-
-
     <?= $this->Html->script('jquery-3.2.1.min.js') ?>
     <?= $this->Html->script('prettify.js') ?>
     <?= $this->Html->script('common.js') ?>
@@ -137,7 +135,6 @@
     <?= $this->Html->script('owl.carousel.js') ?>
     <?= $this->Html->script('bootshop.js') ?>
     <?= $this->Html->script('jquery.lightbox-0.5.js') ?>
-
 </body>
 </html>
 
