@@ -53,7 +53,7 @@
                 <p><legend ><i class="fa fa-comments-o"></i>&nbsp;&nbsp;<?= __('Bình luận: ') ?></legend> Có tất cả <?php echo $book['comment_count'] ?> bình luận</p>
                 <?php if (!empty($comments)){
                         foreach ($comments as $comment) {
-                            echo $comment['user']['username']."  đã gửi:";
+                            echo $comment['user']['fullname']."  đã gửi:";
                             echo $comment['content']."<br>";
                         }
                      } else{
@@ -72,14 +72,17 @@
                 <?php echo $this->Form->create('Comment',['url'=>['controller'=>'Comments','action'=>'add'],'novalidator'=>true]); ?>
                 <fieldset>
                     <legend><i class="fa fa-comment-o"></i>&nbsp;&nbsp;<?php echo __('Thêm bình luận'); ?></legend>
-                    <?php
-                    echo $this->Form->input('user_id',['type'=>'hidden','value'=>1]);
-                    echo $this->Form->input('book_id',['type'=>'hidden','value'=>$book['id']]);
-                    echo $this->Form->input('content',['type'=>'textarea','label'=>'']);
-                    ?>
-                    <?php echo $this->Form->input('Chấp nhận',['type'=>'submit']); ?>
+                    <?php if (!empty($user_info)): ?>
+                        <?php
+                        //echo $this->Form->input('user_id',['type'=>'hidden','value'=>1]);
+                        echo $this->Form->input('book_id',['type'=>'hidden','value'=>$book['id']]);
+                        echo $this->Form->input('content',['type'=>'textarea','label'=>'']);
+                        ?>
+                        <?php echo $this->Form->input('Gởi nhận xét',['type'=>'submit','class'=>'btn btn-info']); ?><?php echo $this->Form->end(); ?>
+                    <?php else: ?>
+                            Bạn phải <?php echo $this->Html->link('đăng nhập','/login'); ?> trước khi gởi nhận xét
+                    <?php endif ?>                    
                 </fieldset>
-                <?php echo $this->Form->end(); ?>
             </div>
         </div>
     </div>

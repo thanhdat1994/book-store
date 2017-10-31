@@ -143,7 +143,7 @@
 					 	<?php echo $this->Form->input('phone',['placeholder'=>"Nhập số diện thoại",'label'=>"Số điện thoại: ",'value'=>"01684669005"]); ?>
 					 </div>
 					<div class="row">
-						<?php echo $this->Html->link('Đặt hàng','#',['class'=>"btn btn-primary", 'style'=>"float:right; margin-right:80px;"]); ?>
+						<?php echo $this->Html->link('Đặt hàng','orders/checkout',['class'=>"btn btn-primary", 'style'=>"float:right; margin-right:80px;"]); ?>
 					</div>
 				<?php echo $this->Form->end(); ?>
 			<?php else: ?>

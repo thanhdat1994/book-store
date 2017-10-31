@@ -1,4 +1,4 @@
-<?php
+ <?php
     $cakeDescription = 'Books Store';
 ?>
 <!DOCTYPE html>
@@ -17,6 +17,7 @@
     <?= $this->Html->css('font-awesome/css/font-awesome.css') ?>
     <?= $this->Html->css('prettify.css') ?>
     <?= $this->Html->css('home.css') ?>
+    <?= $this->Html->css('common.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -34,21 +35,7 @@
 <body>
     <div id="header">
         <div class="container-header">
-            <div class="container"> 
-                <a class="brand" href="index.php"><img src="themes/images/mainlogo.png" alt="BookStore"/></a>
-                <div class="account_desc">
-                    <ul class="navbar-header">
-                        <li><a href="#">Giới Thiệu</a></li>
-                        <li><a href="#">Liên Hệ</a></li>
-                        <li><a href="#">Đăng Kí</a></li>
-                        <li><a href="#">Đăng Nhập</a></li>
-                        <li>
-                            <?php echo $this->Html->link('Giỏ Hàng','/gio-hang'); ?>
-                        </li>
-                        <li><a href="#">Tài Khoản</a></li>
-                    </ul>
-                </div>
-            </div>
+            <?php echo $this->element('header'); ?>
         </div>
         <div class="wrap-box"></div>        
     </div>
@@ -75,17 +62,13 @@
                     <br/>
                 <ul id="sideManu" class="nav nav-tabs nav-stacked panel panel-default">
                 <h4 style="margin-left: 10px;"><i class="fa fa-navicon"></i>&nbsp;&nbsp;Danh mục sách</h4>
-                <?php //echo $this->element('menu_categories'); ?>
-                    <li><a href="danh-muc/ki-nang-song"> Kĩ Năng Sống</a></li>
-                    <li><a href="danh-muc/kinh-te"> Kinh tế</a></li>
-                    <li><a href="danh-muc/lich-su"> Lịch sử</a></li>
-                    <li><a href="danh-muc/van-hoc"> Văn Học</a></li>
-                    <li><a href="danh-muc/giao-khoa"> Giáo Khoa</a></li>
+                <?php echo $this->element('menu_categories'); ?>
+                    
                 </ul>
                 <br/>
                 
                 <ul id="sideManu" class="nav nav-tabs nav-stacked panel panel-default"> 
-                    <h4 style="margin-left: 10px;"><i class="fa fa-address-card-o"></i>&nbsp;&nbsp;Danh mục tác giả </h4>                  
+                    <h4 style="margin-left: 10px;"><i class="fa fa-address-card-o"></i>&nbsp;&nbsp;Danh mục tác giả </h4>     
                     <li><a href="tac-gia/philip-miller"> Philip Miller</a></li>
                     <li><a href="tac-gia/anđy-andrews"> Andy Andrews</a></li>
                     <li><a href="tac-gia/dat-lai-lat-ma"> Đạt Lai Lạt Ma</a></li>
@@ -149,7 +132,7 @@
 
     <?= $this->Html->script('jquery-3.2.1.min.js') ?>
     <?= $this->Html->script('prettify.js') ?>
-    
+    <?= $this->Html->script('common.js') ?>
     <?= $this->Html->script('bootstrap.min.js') ?>
     <?= $this->Html->script('owl.carousel.js') ?>
     <?= $this->Html->script('bootshop.js') ?>

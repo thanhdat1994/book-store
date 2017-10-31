@@ -56,6 +56,7 @@
 								</div>
 							</div>
 						</li> 
+						<!--<?php echo $this->element('books',['books'=>$hotbook]); ?>-->
 					</ul>
 				</div>
 				<div class="item">

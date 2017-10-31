@@ -72,6 +72,18 @@ class BooksController extends AppController
         $this->set('cakeDescription','Sách mới: Books Store');
     }
 
+    public function hot() {
+        $this->paginate = [
+            'fields' => ['id','title','image','sale_price','slug'],
+            'order' => ['created' =>'desc'],
+            'limit' => 4,
+            'conditions' => ['hot'=>1],
+            'contain' => ['Writers']
+            ];
+        $hotbooks = $this->paginate();
+        $this->set('hotbooks',$hotbooks);
+        $this->set('cakeDescription','Sách bán chạy: Books Store');
+    }
     /**
      * View method
      *

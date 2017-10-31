@@ -113,4 +113,40 @@ class UsersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function login(){
+        if($this->request->is('post')){
+            $user = $this->Auth->identify();
+            if($user){
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+                //return $this->redirect(['controller'=>'books','action'=>'index']);           
+            }
+            $this->Flash->error(__('Sai tên đăng nhập hoặc mật khẩu.'));
+        }
+        $this->set('title_for_layout','Đăng nhập');        
+    }
+
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
+
+    public function changePassword(){
+        if($this->request->is('post')){
+            $this->Users->set($this->request->data);
+            if($this->Users->validator()){
+                if(strcmp($this->request->data['Users']['password'], $this->request->data['Users']['confirm_password']) == 0){
+                    $this->Flash->success(__('Đổi mật khẩu thành công', ['class'=>'alert alert-success']));
+                } else{
+                    $this->Flash->error(__('Xác nhận mật khẩu không đúng', ['class'=>'alert alert-danger']));
+                }
+            } else{
+                $errors = $this->Users->errors($this->request->data);
+                $session = $this->request->session();
+                $session->write('errors',$errors);
+            }
+        }
+        $this->set('title_for_layout','Đổi mật khẩu');
+    }
 }
