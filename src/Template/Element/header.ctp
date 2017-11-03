@@ -6,7 +6,7 @@
 			<li><a href="#">Giới Thiệu</a></li>
 			<li><a href="#">Liên Hệ</a></li>
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Xin chào <span class="caret"></span></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Xin chào <strong> <?php echo $user_info['firstname']." ".$user_info['lastname']; ?></strong><span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<li>
 						<?php echo $this->Html->link('Giỏ Hàng','/gio-hang'); ?>

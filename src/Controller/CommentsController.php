@@ -1,4 +1,4 @@
-<?php
+ <?php
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -12,6 +12,11 @@ use App\Controller\AppController;
  */
 class CommentsController extends AppController
 {
+    /*public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter();
+        $this->Auth->allow(['add']);
+    }*/
 
     public function beforeFilter(Event $event)
     {

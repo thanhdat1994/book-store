@@ -53,7 +53,7 @@
                 <p><legend ><i class="fa fa-comments-o"></i>&nbsp;&nbsp;<?= __('Bình luận: ') ?></legend> Có tất cả <?php echo $book['comment_count'] ?> bình luận</p>
                 <?php if (!empty($comments)){
                         foreach ($comments as $comment) {
-                            echo $comment['user']['fullname']."  đã gửi:";
+                            echo $comment['user']['firstname']." ".$comment['user']['lastname']."  đã gửi: ";
                             echo $comment['content']."<br>";
                         }
                      } else{
@@ -74,7 +74,7 @@
                     <legend><i class="fa fa-comment-o"></i>&nbsp;&nbsp;<?php echo __('Thêm bình luận'); ?></legend>
                     <?php if (!empty($user_info)): ?>
                         <?php
-                        //echo $this->Form->input('user_id',['type'=>'hidden','value'=>1]);
+                        echo $this->Form->input('user_id',['type'=>'hidden','value'=>$user_info['id']]);
                         echo $this->Form->input('book_id',['type'=>'hidden','value'=>$book['id']]);
                         echo $this->Form->input('content',['type'=>'textarea','label'=>'']);
                         ?>

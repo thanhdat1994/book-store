@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * Users Controller
@@ -12,6 +13,25 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
+
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->Auth->config('authenticate', ['Form']);
+        $this->loadComponent('RequestHandler');
+        $this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+            'loginAction' => '/login',
+            'authError' => 'Bạn cần phải đăng nhập để tiếp tục',
+            'flash' => [
+                'element' => 'default',
+                'key' => 'auth',
+                'params' => ['class'=>'alert alert-danger']
+            ],
+            'loginRedirect' => '/'
+        ]);        
+    }
 
     /**
      * Index method
@@ -168,4 +188,5 @@ class UsersController extends AppController
                                    
         }
     }
+    }    
 }

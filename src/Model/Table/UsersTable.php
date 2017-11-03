@@ -83,8 +83,7 @@ class UsersTable extends Table
                 ]);
         $validator
             ->requirePresence('confirm_pasword', 'create')
-            ->notEmpty('confirm_pasword','Xác nhận mật khẩu không được để trống');    
-
+            ->notEmpty('confirm_pasword','Xác nhận mật khẩu không được để trống');   
         $validator
             ->email('email')
             ->requirePresence('email', 'create')
