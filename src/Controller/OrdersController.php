@@ -119,11 +119,13 @@ class OrdersController extends AppController
         $session=$this->request->session();
         if ($this->request->is('post'){
             # code...
-            $data = ['user_id'=>1,
+            $currentUser = $this->get_user();
+            $data = ['user_id'=>$currentUser['id',
             'orders_info'=>json_encode($session->read('cart')),
             'customer_info'=>json_encode($this->request->getData['Orders']),
             'payment_info'=>json_encode($session->read('payment')),
             'status'=>0]
+
             if ($this->Orders->save($data)) {
                 # code...
                 $session->delete('cart');
@@ -131,6 +133,7 @@ class OrdersController extends AppController
             }else{
                 $this->Flash->set("Thanh toán không thực hiện được!",'default',['class'=>"alert alert-danger",'orders']);
             }
+            $this->set('current_user',$currentUser);
         }
     }
 }

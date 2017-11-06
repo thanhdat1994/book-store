@@ -1,7 +1,7 @@
 <div class="panel panel-info">
             <h4 class="panel-heading"><span class="glyphicon glyphicon-user"> Đăng ký</span></h4>
-                        <?php //echo $this->Flash->render('auth'); ?>
-                        <?php echo $this->element('errors'); ?>
+            <?php //echo $this->Flash->render('auth'); ?>
+            <?php echo $this->element('errors'); ?>
                         <?php echo $this->Flash->render(); ?>
                         <?php echo $this->Form->create('User', ['class' => 'form-horizontal', 'novalidate' => true, 'inputDefaults' => ['label' => false]]); ?>
                                     <div class="control-group">

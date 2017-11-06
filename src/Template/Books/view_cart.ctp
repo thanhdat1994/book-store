@@ -1,7 +1,19 @@
 <?php 
 	$session = $this->request->session();
 ?>
+<script type="text/javascript">
 
+	/* Update product variant quantity in cart
+	  ============================================================ */
+	  function updateQuantity(fn, variantId) {
+	    var quantity;
+	    var cartLineItem = findCartItemByVariantId(variantId);
+	    if (cartLineItem) {
+	      quantity = fn(cartLineItem.quantity);
+	      updateVariantInCart(cartLineItem, quantity);
+	    }
+	  }
+</script>
 	<!-- $cart = $session->read('cart'); -->
 <div class="panel panel-default" style="width: 872px;">
 <h4 class="panel-heading">
@@ -43,7 +55,7 @@
 									<td>
 										<?php echo $this->Form->create('Books',['class'=>"form-inline"]); ?>
 										<?php echo $this->Form->input('quantity',['value'=>$book['quantity'], 'class'=>'col col-lg-2','label'=>false,'div'=>false]); ?>
-										<?php echo $this->Form->button('Cập nhật',['type'=>"submit",'class'=>"btn btn-link"]); ?>
+										<?php echo $this->Form->button('Cập nhật',['type'=>"submit", 'conclick'=>"updateQuantity();"]); ?>
 										<?php echo $this->Form->end();  ?>
 									</td>
 									<td>
@@ -107,15 +119,15 @@
 		<!-- coupon -->
 		<div class="panel panel-success col col-lg-4" style="margin-top:10px;">
 			<h4 class='panel-heading'><i class="fa fa-barcode"></i>&nbsp; &nbsp; Mã giảm giá</h4>
-				<?php echo $this->Flash->render('coupon'); ?>
+				<?php echo $this->Flash->render('coupons'); ?>
 				<?php if ($session->check('payment.coupon')): ?>
 				<?php pr($session->read('payment.coupon')); ?>
 					 Bạn đã nhập mã giảm giá!
 					<?php else: ?>
 						<?php echo $this->Form->create('Coupons',['url'=>['controller'=>'coupons','action'=>'add'],'class'=>"form-inline"]); ?>
 						<?php echo $this->Form->input('code',['class'=>'input text','placeholder'=>"Nhập mã giảm giá",'label'=>false,'div'=>false]); ?>
-						<?php echo $this->Form->button('Nhập',['type'=>"submit",'class'=>"btn btn-primary"]) ?>
-						<?php $session->write('payment.coupon','code') ?>
+						<?php echo $this->Form->button('Nhập',['type'=>"submit",'class'=>"btn btn-primary"]); ?>
+						<?php $session->write('payment.coupon','code'); ?>
 						<?php echo $this->Form->end(); ?>
 						<h4>Ghi chú</h4>
 						<ul>
@@ -143,7 +155,7 @@
 					 	<?php echo $this->Form->input('phone',['placeholder'=>"Nhập số diện thoại",'label'=>"Số điện thoại: ",'value'=>"01684669005"]); ?>
 					 </div>
 					<div class="row">
-						<?php echo $this->Html->link('Đặt hàng','orders/checkout',['class'=>"btn btn-primary", 'style'=>"float:right; margin-right:80px;"]); ?>
+						<?php echo $this->Html->link('Đặt hàng','/orders/checkout',['class'=>"btn btn-primary", 'style'=>"float:right; margin-right:80px;"]); ?>
 					</div>
 				<?php echo $this->Form->end(); ?>
 			<?php else: ?>
@@ -152,6 +164,7 @@
 			
 		</div>
 	<?php else: ?>
+		<?php $session->delete('payment.coupon') ?>
 	<div class="thumbnail">
 		<h5> &nbsp; &nbsp; &nbsp;Chưa có sản phẩm nào trong giỏ hàng! Vui lòng thêm sản phẩm trước khi xem chi tiết giỏ hàng!</h5>
 			<p><?php echo $this->Html->link('Về trang chủ','/',['class'=>"btn btn-primary"]); ?></p>

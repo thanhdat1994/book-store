@@ -93,6 +93,11 @@ class AppController extends Controller
         return $this->Auth->user();
     }
 
+    public function getCoupon($code){
+        $coupons=$this->Coupons->find('all',['conditions'=>['Coupons.code'=>$code]])->first();
+        return $coupons;
+    }
+
     /* tính tổng giá trị giỏ hàng*/
     public function Sum_Price($cart){
         $total=0;

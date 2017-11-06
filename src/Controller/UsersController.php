@@ -14,12 +14,6 @@ use Cake\Auth\DefaultPasswordHasher;
 class UsersController extends AppController
 {
 
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter();
-        $this->Auth->allow(['edit']);
-    }
-
     public function initialize()
     {
         parent::initialize();

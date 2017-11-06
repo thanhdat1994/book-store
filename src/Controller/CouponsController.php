@@ -13,11 +13,11 @@ use App\Controller\AppController;
 class CouponsController extends AppController
 {
 
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter();
-        $this->Auth->allow(['add']);
-    }
+    // public function beforeFilter(Event $event)
+    // {
+    //     parent::beforeFilter();
+    //     $this->Auth->allow(['add']);
+    // }
 
     /**
      * Index method
@@ -75,9 +75,9 @@ class CouponsController extends AppController
         if ($this->request->is('post')) {
             # code...
             $session = $this->request->session();
-            $code = $this->request->getData['Coupons']['code'];
-            pr($code); 
-            $coupon = $this->Coupons->findByCode($code);
+            $code = $this->request->data['Coupons']['code'];
+            /*$coupon = $this->Coupons->findByCode($code);*/
+            $coupon = $this->getCoupon($code);
             if (!empty($coupon)) {
                 # code...
                 $today = date('Y-m-d H:i:s');
