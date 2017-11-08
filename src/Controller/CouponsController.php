@@ -75,7 +75,7 @@ class CouponsController extends AppController
         if ($this->request->is('post')) {
             # code...
             $session = $this->request->session();
-            $code = $this->request->data['Coupons']['code'];
+            $code = $this->request->getData('code');
             /*$coupon = $this->Coupons->findByCode($code);*/
             $coupon = $this->getCoupon($code);
             if (!empty($coupon)) {
@@ -87,12 +87,12 @@ class CouponsController extends AppController
                         $session->write('payment.discount',$coupon['percent']);
                         $total = $session->read('payment.total');
                         $pay = $total - $coupon['percent']/ 100 * $total;
-                        $sesion->write('payment.pay',$pay);
+                        $session->write('payment.pay',$pay);
                 }else{
-                     $this->Flash->set('Mã giảm giá đã hết hạn!',['default',['class'=>'alert alert-danger'],'coupons']);
+                     $this->Flash->error('Mã giảm giá đã hết hạn!',['default',['class'=>'alert alert-danger'],'coupons']);
                 }
             }else{
-                $this->Flash->set('Mã giảm giá không tồn tại!',['default',['class'=>'alert alert-danger'],'coupons']);
+                $this->Flash->error('Mã giảm giá không tồn tại!',['default',['class'=>'alert alert-danger'],'coupons']);
             }
             $this->redirect($this->referer());
         }

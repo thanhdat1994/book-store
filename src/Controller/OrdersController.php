@@ -43,7 +43,7 @@ class OrdersController extends AppController
         ]);
 
         $this->set('order', $order);
-        $this->set('_serialize', ['order']);
+        $this->set('_serialize', ['orders']);
     }
 
     /**
@@ -65,7 +65,7 @@ class OrdersController extends AppController
         }
         $users = $this->Orders->Users->find('list', ['limit' => 200]);
         $this->set(compact('order', 'users'));
-        $this->set('_serialize', ['order']);
+        $this->set('_serialize', ['orders']);
     }
 
     /**
@@ -91,7 +91,7 @@ class OrdersController extends AppController
         }
         $users = $this->Orders->Users->find('list', ['limit' => 200]);
         $this->set(compact('order', 'users'));
-        $this->set('_serialize', ['order']);
+        $this->set('_serialize', ['orders']);
     }
 
     /**
@@ -117,23 +117,31 @@ class OrdersController extends AppController
     /*checkout*/
     public function checkout(){
         $session=$this->request->session();
-        if ($this->request->is('post'){
+        if($this->request->is('post')){
             # code...
-            $currentUser = $this->get_user();
-            $data = ['user_id'=>$currentUser['id',
+            $order = $this->Orders->newEntity();
+            $customer = ['name'=>$this->request->getData('name'),
+                'email'=>$this->request->getData('email'),
+                'address'=>$this->request->getData('address'),
+                'phone'=>$this->request->getData('phone')
+            ];
+            pr($user_info['id']);
+            $data = ['user_id'=>$user_info['id'],
+            'customer_info'=>json_encode($customer),
             'orders_info'=>json_encode($session->read('cart')),
-            'customer_info'=>json_encode($this->request->getData['Orders']),
             'payment_info'=>json_encode($session->read('payment')),
-            'status'=>0]
-
-            if ($this->Orders->save($data)) {
+            'status'=>0
+            ];
+            $order = $this->Orders->patchEntity($order,$data);
+            if($this->Orders->save($order)){
                 # code...
                 $session->delete('cart');
                 $session->delete('payment');
             }else{
-                $this->Flash->set("Thanh toán không thực hiện được!",'default',['class'=>"alert alert-danger",'orders']);
+                $this->Flash->error("Thanh toán không thực hiện được!",'default',['class'=>"alert alert-danger",'orders']);
             }
-            $this->set('current_user',$currentUser);
         }
+        $this->Flash->success(' Thực hiện đặt hàng thành công!','default',['class'=>'alert alert-info'],'orders');
+        $this->redirect($this->referer());
     }
 }

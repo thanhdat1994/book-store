@@ -144,7 +144,7 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('Sai tên đăng nhập hoặc mật khẩu.'));
         }
-        $this->set('title_for_layout','Đăng nhập');        
+        $this->set('cakeDescription','Đăng nhập');        
     }
 
     public function logout()
@@ -167,25 +167,6 @@ class UsersController extends AppController
                 $session->write('errors',$errors);
             }
         }
-        $this->set('title_for_layout','Đổi mật khẩu');
-    }
-    public function signup(){
-        $this->set('title_for_layout',"Đăng ký");
-        if ($this->request->is('post')) {
-            if ($this->request->data['User']['agree'] == 1) {
-                $this->User->create();
-                $this->request->data['User']['group_id'] = 2;
-                if ($this->User->save($this->request->data)) {
-                    $this->Flash->success('Đã đăng ký thành công', ['params' => ['class' => 'alert alert-success']]);
-                    $this->Auth->login();
-                    $this->redirect($this->Auth->redirect());
-                } else {
-                    $this->Flash->error('Đăng ký chưa được, vui lòng thử lại!', ['params' => ['class' => 'alert alert-error']]);
-                }
-        } else {
-            $this->Flash->error('Bạn cần đồng ý với các thỏa thuận để tiếp tục!', ['params' => ['class' => 'alert alert-error']]);         
-            }
-                                   
-        }
+        $this->set('cakeDescription','Đổi mật khẩu');
     }    
 }

@@ -1,18 +1,14 @@
 <?php 
 	$session = $this->request->session();
 ?>
-<script type="text/javascript">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#quantity").click(function(){
+        var quantity = $("#quantity").val();
+    });
+});
 
-	/* Update product variant quantity in cart
-	  ============================================================ */
-	  function updateQuantity(fn, variantId) {
-	    var quantity;
-	    var cartLineItem = findCartItemByVariantId(variantId);
-	    if (cartLineItem) {
-	      quantity = fn(cartLineItem.quantity);
-	      updateVariantInCart(cartLineItem, quantity);
-	    }
-	  }
 </script>
 	<!-- $cart = $session->read('cart'); -->
 <div class="panel panel-default" style="width: 872px;">
@@ -53,10 +49,11 @@
 										<?php echo $this->Html->link($book['title'],'/'.$book['slug']); ?>
 									</td>
 									<td>
-										<?php echo $this->Form->create('Books',['class'=>"form-inline"]); ?>
-										<?php echo $this->Form->input('quantity',['value'=>$book['quantity'], 'class'=>'col col-lg-2','label'=>false,'div'=>false]); ?>
-										<?php echo $this->Form->button('Cập nhật',['type'=>"submit", 'conclick'=>"updateQuantity();"]); ?>
-										<?php echo $this->Form->end();  ?>
+										<?php echo $this->Form->create('Books',['url' => ['controller' => 'books','action' => 'quantityUpdate']],['class'=>"form-inline"]); ?>
+										<?php echo $this->Form->input('bookId', ['type' => 'hidden', 'value' => $book['id']]); ?>
+							            <?php echo $this->Form->input('quantity', ['value' => $book['quantity'], 'class' => 'col col-lg-2', 'label' => false, 'div' => false,'id'=>'quantity']); ?>
+							            <?php echo $this->Form->button('Cập nhật', ['class'=>"btn btn-link", 'type' => 'submit']); ?>
+							            <?php echo $this->Form->end(); ?>
 									</td>
 									<td>
 										<?php echo $this->Number->format($book['sale_price'],['places'=>0,'after'=>' VNĐ']); ?>
@@ -119,7 +116,6 @@
 		<!-- coupon -->
 		<div class="panel panel-success col col-lg-4" style="margin-top:10px;">
 			<h4 class='panel-heading'><i class="fa fa-barcode"></i>&nbsp; &nbsp; Mã giảm giá</h4>
-				<?php echo $this->Flash->render('coupons'); ?>
 				<?php if ($session->check('payment.coupon')): ?>
 				<?php pr($session->read('payment.coupon')); ?>
 					 Bạn đã nhập mã giảm giá!
@@ -127,7 +123,6 @@
 						<?php echo $this->Form->create('Coupons',['url'=>['controller'=>'coupons','action'=>'add'],'class'=>"form-inline"]); ?>
 						<?php echo $this->Form->input('code',['class'=>'input text','placeholder'=>"Nhập mã giảm giá",'label'=>false,'div'=>false]); ?>
 						<?php echo $this->Form->button('Nhập',['type'=>"submit",'class'=>"btn btn-primary"]); ?>
-						<?php $session->write('payment.coupon','code'); ?>
 						<?php echo $this->Form->end(); ?>
 						<h4>Ghi chú</h4>
 						<ul>
@@ -140,22 +135,22 @@
 		<!-- order -->
 		<div class="panel panel-success col col-lg-7" style="margin-top:10px; float:right;">
 			<h4 class='panel-heading'><i class="fa fa-user"></i>&nbsp; &nbsp; Thông tin đặt hàng</h4>
-			<?php if (true): ?>
+			<?php if ($user_info != null): ?>
 				<?php echo $this->Form->create('Orders',['url'=>['controller'=>'orders','action'=>'checkout'], 'class'=>'form-horizontal']); ?>
 					 <div class="col col-lg-10">
-					 	<?php echo $this->Form->input('name',['placeholder'=>"Nhập tên",'label'=>"Tên: ",'value'=>"TranLong"]); ?>
+					 	<?php echo $this->Form->input('name',['placeholder'=>"Nhập tên",'label'=>"Tên: ",'value'=> $user_info['firstname']." ".$user_info['lastname']]); ?>
 					 </div>
 					 <div class="col col-lg-10">
-					 	<?php echo $this->Form->input('email',['placeholder'=>"Nhập email",'value'=>"long.tv@bookstore.com"]); ?>
+					 	<?php echo $this->Form->input('email',['placeholder'=>"Nhập email",'value'=>$user_info['email']]); ?>
 					 </div>
 					 <div class="col col-lg-10">
-					 	<?php echo $this->Form->input('address',['placeholder'=>"Nhập địa chỉ",'label'=>"Địa chỉ: ",'value'=>"31 Vo Truong Toan"]); ?>
+					 	<?php echo $this->Form->input('address',['placeholder'=>"Nhập địa chỉ",'label'=>"Địa chỉ: ",'value'=>$user_info['address']]); ?>
 					 </div>
 					 <div class="col col-lg-10">
-					 	<?php echo $this->Form->input('phone',['placeholder'=>"Nhập số diện thoại",'label'=>"Số điện thoại: ",'value'=>"01684669005"]); ?>
+					 	<?php echo $this->Form->input('phone',['placeholder'=>"Nhập số diện thoại",'label'=>"Số điện thoại: ",'value'=>$user_info['phone_number']]); ?>
 					 </div>
-					<div class="row">
-						<?php echo $this->Html->link('Đặt hàng','/orders/checkout',['class'=>"btn btn-primary", 'style'=>"float:right; margin-right:80px;"]); ?>
+					<div class="col col-lg-10">
+						<?php echo $this->Form->button('Đặt hàng', ['class' => 'btn btn-primary', 'type' => 'submit','style' => 'margin: 10px 0px 10px 0px; float:right;']); ?>
 					</div>
 				<?php echo $this->Form->end(); ?>
 			<?php else: ?>

@@ -317,6 +317,27 @@ class BooksController extends AppController
                 $this->redirect($this->referer());
             }
         }
+
+        /*
+        update quantity
+        */
+        public function quantityUpdate(){
+             if ($this->request->is('post')) {
+                $session=$this->request->session();
+                $id = $this->request->getData(['bookId']);
+                $book = $session->read('cart.'.$id);
+                $oldQuantity = $book['quantity'];
+                $newQuantity = $this->request->getData(['quantity']);
+                if ($newQuantity > 0 && $newQuantity != $oldQuantity) {
+                    $book['quantity'] = $newQuantity;
+                    $session->write('cart.'.$id, $book);
+                    $cart = $session->read('cart');
+                    $total = $this->Sum_Price($cart);
+                    $session->write('payment.total', $total);
+                }
+            }
+            $this->redirect($this->referer());
+        }
     /**
      * search
      */

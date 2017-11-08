@@ -94,7 +94,7 @@ class AppController extends Controller
     }
 
     public function getCoupon($code){
-        $coupons=$this->Coupons->find('all',['conditions'=>['Coupons.code'=>$code]])->first();
+        $coupons = $this->Coupons->find('all',['conditions'=>['Coupons.code'=>$code]])->first();
         return $coupons;
     }
 
